@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    The contents of this file are subject to the license and copyright
+    detailed in the LICENSE and NOTICE files at the root of the source
+    tree and available online at
+
+    http://www.dspace.org/license/
+
+-->
+<rebel-remote>
+    <id>jspui</id>
+    <publicKey>30818902818100c1b1f42747f6a8a15f8b5903444228fa6cff58311d44e50ab77950c2d838a2ecb8055392c8e3ecc952532ed5a26fe004951dd1877ae6ccc1c74578f3486c656c61ed0422b0574a07d33c9a24f777bed1ba8c7c6e9d11c70e6e670d04996bc5dfd361c7ae1346987062b46b60a7944811fdd218babe724d777bf1b62ca198f4310203010001</publicKey>
+</rebel-remote>

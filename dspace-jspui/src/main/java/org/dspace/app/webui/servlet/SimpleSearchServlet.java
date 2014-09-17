@@ -14,15 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-import org.dspace.app.webui.discovery.DiscoverySearchRequestProcessor;
-import org.dspace.app.webui.search.LuceneSearchRequestProcessor;
+import org.dspace.app.webui.factory.SearchRequestProcessorFactory;
 import org.dspace.app.webui.search.SearchProcessorException;
 import org.dspace.app.webui.search.SearchRequestProcessor;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.core.Context;
-import org.dspace.core.PluginConfigurationError;
-import org.dspace.core.PluginManager;
 
 /**
  * Servlet for handling a simple search.
@@ -30,28 +26,16 @@ import org.dspace.core.PluginManager;
  */
 public class SimpleSearchServlet extends DSpaceServlet
 {
-    private SearchRequestProcessor internalLogic;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /** log4j category */
-    private static Logger log = Logger.getLogger(SimpleSearchServlet.class);
+	private SearchRequestProcessor internalLogic;
 
     public void init()
     {
-        try
-        {
-            internalLogic = (SearchRequestProcessor) PluginManager
-                    .getSinglePlugin(SearchRequestProcessor.class);
-        }
-        catch (PluginConfigurationError e)
-        {
-            log.warn(
-                    "SimpleSearchServlet not properly configurated, please configure the SearchRequestProcessor plugin",
-                    e);
-        }
-        if (internalLogic == null)
-        {   // Discovery is the default search provider since DSpace 4.0
-            internalLogic = new DiscoverySearchRequestProcessor();
-        }
+        internalLogic = SearchRequestProcessorFactory.getInstanceOfSearchRequestProcessor();
     }
 
     protected void doDSGet(Context context, HttpServletRequest request,

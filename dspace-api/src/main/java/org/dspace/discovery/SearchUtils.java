@@ -54,7 +54,6 @@ public class SearchUtils {
         }
 
         if(result == null){
-            //No specific configuration, get the default one
             result = configurationService.getMap().get("default");
         }
 

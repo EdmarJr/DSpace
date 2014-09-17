@@ -29,3 +29,7 @@ META-INF/
 
 ##Mac noise
 .DS_Store
+/.metadata
+/webapp
+/Servers
+/RemoteSystemsTempFiles

@@ -33,6 +33,7 @@ import org.dspace.app.util.OpenSearch;
 import org.dspace.app.util.SyndicationFeed;
 import org.dspace.app.webui.search.SearchProcessorException;
 import org.dspace.app.webui.search.SearchRequestProcessor;
+import org.dspace.app.webui.search.SearchRequestProcessorWithManager;
 import org.dspace.app.webui.util.JSPManager;
 import org.dspace.app.webui.util.UIUtil;
 import org.dspace.authorize.AuthorizeManager;
@@ -56,11 +57,13 @@ import org.dspace.discovery.configuration.DiscoverySearchFilterFacet;
 import org.dspace.discovery.configuration.DiscoverySortFieldConfiguration;
 import org.w3c.dom.Document;
 
-public class DiscoverySearchRequestProcessor implements SearchRequestProcessor
+public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, SearchRequestProcessorWithManager
 {
     private static final int ITEMMAP_RESULT_PAGE_SIZE = 50;
-
+    
     private static String msgKey = "org.dspace.app.webui.servlet.FeedServlet";
+    
+    private SearchRequestProcessor internalLogic;
 
     /** log4j category */
     private static Logger log = Logger.getLogger(DiscoverySearchRequestProcessor.class);
@@ -217,7 +220,15 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor
             HttpServletResponse response) throws SearchProcessorException,
             IOException, ServletException
     {
-        Item[] resultsItems;
+        gerenciarRequestParaUmSimpleSearch(context, request, response);
+
+        JSPManager.showJSP(request, response, "/search/discovery.jsp");
+    }
+
+	public void gerenciarRequestParaUmSimpleSearch(Context context,
+			HttpServletRequest request, HttpServletResponse response)
+			throws SearchProcessorException, IOException, ServletException {
+		Item[] resultsItems;
         Collection[] resultsCollections;
         Community[] resultsCommunities;
         DSpaceObject scope;
@@ -236,17 +247,8 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor
 
         DiscoveryConfiguration discoveryConfiguration = SearchUtils
                 .getDiscoveryConfiguration(scope);
-        List<DiscoverySortFieldConfiguration> sortFields = discoveryConfiguration
-                .getSearchSortConfiguration().getSortFields();
-        List<String> sortOptions = new ArrayList<String>();
-        for (DiscoverySortFieldConfiguration sortFieldConfiguration : sortFields)
-        {
-            String sortField = SearchUtils.getSearchService().toSortFieldIndex(
-                    sortFieldConfiguration.getMetadataField(),
-                    sortFieldConfiguration.getType());
-            sortOptions.add(sortField);
-        }
-        request.setAttribute("sortOptions", sortOptions);
+        
+        adicionarParametroSortOptionsNaRequest(request, discoveryConfiguration);
         
         DiscoverQuery queryArgs = DiscoverUtility.getDiscoverQuery(context,
                 request, scope, true);
@@ -271,9 +273,8 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor
         String query = queryArgs.getQuery();
         request.setAttribute("query", query);
         request.setAttribute("queryArgs", queryArgs);
-        List<DiscoverySearchFilter> availableFilters = discoveryConfiguration
-                .getSearchFilters();
-        request.setAttribute("availableFilters", availableFilters);
+        adicionarParametroAvailableFiltersNaRequest(request,
+				discoveryConfiguration);
 
         List<String[]> appliedFilters = DiscoverUtility.getFilters(request);
         request.setAttribute("appliedFilters", appliedFilters);
@@ -435,9 +436,30 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor
             request.setAttribute("search.error", true);
             request.setAttribute("search.error.message", e.getMessage());
         }
+	}
 
-        JSPManager.showJSP(request, response, "/search/discovery.jsp");
-    }
+	private void adicionarParametroAvailableFiltersNaRequest(
+			HttpServletRequest request,
+			DiscoveryConfiguration discoveryConfiguration) {
+		List<DiscoverySearchFilter> availableFilters = discoveryConfiguration
+                .getSearchFilters();
+        request.setAttribute("availableFilters", availableFilters);
+	}
+
+	private void adicionarParametroSortOptionsNaRequest(HttpServletRequest request,
+			DiscoveryConfiguration discoveryConfiguration) {
+		List<DiscoverySortFieldConfiguration> sortFields = discoveryConfiguration
+                .getSearchSortConfiguration().getSortFields();
+        List<String> sortOptions = new ArrayList<String>();
+        for (DiscoverySortFieldConfiguration sortFieldConfiguration : sortFields)
+        {
+            String sortField = SearchUtils.getSearchService().toSortFieldIndex(
+                    sortFieldConfiguration.getMetadataField(),
+                    sortFieldConfiguration.getType());
+            sortOptions.add(sortField);
+        }
+        request.setAttribute("sortOptions", sortOptions);
+	}
 
     /**
      * Export the search results as a csv file

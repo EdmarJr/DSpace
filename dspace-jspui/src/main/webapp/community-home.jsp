@@ -37,6 +37,9 @@
 
 <%
     // Retrieve attributes
+    for(int i = 0; i < 5; i++) {
+    	System.out.println("eee");
+    }
     Community community = (Community) request.getAttribute( "community" );
     Collection[] collections =
         (Collection[]) request.getAttribute("collections");
@@ -75,6 +78,7 @@
 <%@page import="org.dspace.app.webui.servlet.MyDSpaceServlet"%>
 <dspace:layout locbar="commLink" title="<%= name %>" feedData="<%= feedData %>">
 <div class="well">
+
 <div class="row">
 	<div class="col-md-8">
         <h2><%= name %>
@@ -101,6 +105,7 @@
   <%= intro %>
 <% } %>
 </div>
+
 <p class="copyrightText"><%= copyright %></p>
 	<div class="row">
 <%
@@ -232,6 +237,7 @@
     	int discovery_facet_cols = 4;
     %>
 	<%@ include file="discovery/static-sidebar-facet.jsp" %>
+	<%@ include file="search/discoveryInclude.jsp" %>
 </div>
 <div class="row">
 <%
@@ -348,57 +354,5 @@
     }
 %>
 </div>
-    <% if(editor_button || add_button)  // edit button(s)
-    { %>
-    <dspace:sidebar>
-		 <div class="panel panel-warning">
-             <div class="panel-heading">
-             	<fmt:message key="jsp.admintools"/>
-             	<span class="pull-right">
-             		<dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.site-admin\")%>"><fmt:message key="jsp.adminhelp"/></dspace:popup>
-             	</span>
-             	</div>
-             <div class="panel-body">
-             <% if(editor_button) { %>
-	            <form method="post" action="<%=request.getContextPath()%>/tools/edit-communities">
-		          <input type="hidden" name="community_id" value="<%= community.getID() %>" />
-		          <input type="hidden" name="action" value="<%=EditCommunitiesServlet.START_EDIT_COMMUNITY%>" />
-                  <%--<input type="submit" value="Edit..." />--%>
-                  <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.general.edit.button"/>" />
-                </form>
-             <% } %>
-             <% if(add_button) { %>
-
-				<form method="post" action="<%=request.getContextPath()%>/tools/collection-wizard">
-		     		<input type="hidden" name="community_id" value="<%= community.getID() %>" />
-                    <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.community-home.create1.button"/>" />
-                </form>
-                
-                <form method="post" action="<%=request.getContextPath()%>/tools/edit-communities">
-                    <input type="hidden" name="action" value="<%= EditCommunitiesServlet.START_CREATE_COMMUNITY%>" />
-                    <input type="hidden" name="parent_community_id" value="<%= community.getID() %>" />
-                    <%--<input type="submit" name="submit" value="Create Sub-community" />--%>
-                    <input class="btn btn-default col-md-12" type="submit" name="submit" value="<fmt:message key="jsp.community-home.create2.button"/>" />
-                 </form>
-             <% } %>
-            <% if( editor_button ) { %>
-                <form method="post" action="<%=request.getContextPath()%>/mydspace">
-                  <input type="hidden" name="community_id" value="<%= community.getID() %>" />
-                  <input type="hidden" name="step" value="<%= MyDSpaceServlet.REQUEST_EXPORT_ARCHIVE %>" />
-                  <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.mydspace.request.export.community"/>" />
-                </form>
-              <form method="post" action="<%=request.getContextPath()%>/mydspace">
-                <input type="hidden" name="community_id" value="<%= community.getID() %>" />
-                <input type="hidden" name="step" value="<%= MyDSpaceServlet.REQUEST_MIGRATE_ARCHIVE %>" />
-                <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.mydspace.request.export.migratecommunity"/>" />
-              </form>
-               <form method="post" action="<%=request.getContextPath()%>/dspace-admin/metadataexport">
-                 <input type="hidden" name="handle" value="<%= community.getHandle() %>" />
-                 <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.general.metadataexport.button"/>" />
-               </form>
-			<% } %>
-			</div>
-		</div>
-  </dspace:sidebar>
-    <% } %>
+    
 </dspace:layout>
