@@ -208,9 +208,9 @@ public class DiscoverUtility
         {
             try
             {
-            String newFilterQuery = SearchUtils.getSearchService()
+            String newFilterQuery = f[2] != null && !f[2].equals("") ? SearchUtils.getSearchService()
                     .toFilterQuery(context, f[0], f[1], f[2])
-                    .getFilterQuery();
+                    .getFilterQuery() : null;
             if (newFilterQuery != null)
             {
                 queryArgs.addFilterQueries(newFilterQuery);

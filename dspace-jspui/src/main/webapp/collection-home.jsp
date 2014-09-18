@@ -389,6 +389,8 @@
     	int discovery_facet_cols = 12;
     %>
     <%@ include file="discovery/static-sidebar-facet.jsp" %>
+    <% Collection[] collections = {}; %>
+    <%@ include file="search/discoveryInclude.jsp" %>
   </dspace:sidebar>
 
 </dspace:layout>

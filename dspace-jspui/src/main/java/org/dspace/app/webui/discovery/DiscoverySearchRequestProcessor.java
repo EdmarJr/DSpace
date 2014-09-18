@@ -281,8 +281,11 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, 
         List<String> appliedFilterQueries = new ArrayList<String>();
         for (String[] filter : appliedFilters)
         {
-            appliedFilterQueries.add(filter[0] + "::" + filter[1] + "::"
-                    + filter[2]);
+        	if(filter[2] != null && !filter[2].equals("")) {
+        		appliedFilterQueries.add(filter[0] + "::" + filter[1] + "::"
+        				+ filter[2]);
+        	}
+        	
         }
         request.setAttribute("appliedFilterQueries", appliedFilterQueries);
         List<DSpaceObject> scopes = new ArrayList<DSpaceObject>();
@@ -340,6 +343,7 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, 
         DiscoverResult qResults = null;
         try
         {
+//        	queryArgs.getFilterQueries();
             qResults = SearchUtils.getSearchService().search(context, scope,
                     queryArgs);
             

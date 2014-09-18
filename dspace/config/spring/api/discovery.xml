@@ -210,6 +210,10 @@
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
                 <ref bean="searchFilterIssued" />
+				<ref bean="searchFilterType" />
+				<ref bean="searchFilterNumber" />
+				<ref bean="searchFilterYear" />
+				<ref bean="searchFilterSubjectNew" />
             </list>
         </property>
         <!--The sort filters for the discovery search (same as defaultConfiguration above)-->
@@ -271,6 +275,46 @@
         <property name="metadataFields">
             <list>
                 <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchFilterType" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="type"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.uri</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchFilterNumber" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="number"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.atos.numero</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchFilterYear" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="year"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.created</value>
+				<value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchFilterSubjectNew" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="subjectNew"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+				<value>dc.subject.other</value>
             </list>
         </property>
     </bean>

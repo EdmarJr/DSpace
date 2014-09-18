@@ -107,8 +107,8 @@
     String[] options = new String[]{"equals","contains","authority","notequals","notcontains","notauthority"};
     
     // Admin user or not
-    Boolean admin_b_include = (Boolean)request.getAttribute("admin_button");
-    boolean admin_button_discovery_include = (admin_b_include == null ? false : admin_b_include.booleanValue());
+    Boolean admin_b = (Boolean)request.getAttribute("admin_button");
+    boolean admin_button = (admin_b == null ? false : admin_b.booleanValue());
 %>
 
 <c:set var="dspace.layout.head.last" scope="request">
@@ -164,7 +164,7 @@
          <label for="tlocation">
          	<fmt:message key="jsp.search.results.searchin"/>
          </label>
-         <select name="location" id="tlocation" hidden="true">
+         <select name="location" id="tlocation">
 <%
     if (scope == null)
     {
@@ -189,48 +189,7 @@ if(scopes != null) {
     }
 }
 %>                                </select><br/>
-                               
-                               
-                               
-                                <label for="filter_value_1"><fmt:message key="jsp.pesquisa.byedmar.tipodocumento"/></label>
-                                <select id="filter_field_1" name="filter_field_1" hidden="true">
-									<option value="type" selected="selected">Title</option>
-								</select>
-                                <select id="filter_type_1" name="filter_type_1" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_1" name="filter_value_1" value="" size="45"><br/>
-                                
-                                
-                                <label for="filter_value_2"><fmt:message key="jsp.pesquisa.byedmar.numerodocumento"/></label>
-                                <select id="filter_field_2" name="filter_field_2" hidden="true">
-									<option value="number" selected="selected">Number</option>
-								</select>
-                                <select id="filter_type_2" name="filter_type_2" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_2" name="filter_value_2" value="" size="45"><br/>
-                                
-                                <label for="filter_value_3"><fmt:message key="jsp.pesquisa.byedmar.anodocumento"/></label>
-                                <select id="filter_field_3" name="filter_field_3" hidden="true">
-									<option value="year" selected="selected">Year</option>
-								</select>
-                                <select id="filter_type_3" name="filter_type_3" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_3" name="filter_value_3" value="" size="45"><br/>
-                                
-                                <label for="filter_value_4"><fmt:message key="jsp.pesquisa.byedmar.assuntodocumentonew"/></label>
-                                <select id="filter_field_4" name="filter_field_4" hidden="true">
-									<option value="subjectNew" selected="selected">Subject New</option>
-								</select>
-                                <select id="filter_type_4" name="filter_type_4" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_4" name="filter_value_4" value="" size="45"><br/>
-            
-                            
-                                <label for="query"><fmt:message key="jsp.pesquisa.byedmar.pesquisa.geral"/></label>
+                                <label for="query"><fmt:message key="jsp.search.results.searchfor"/></label>
                                 <input type="text" size="50" id="query" name="query" value="<%= (query==null ? "" : StringEscapeUtils.escapeHtml(query)) %>"/>
                                 <input type="submit" id="main-query-submit" class="btn btn-primary" value="<fmt:message key="jsp.general.go"/>" />
 <% if (StringUtils.isNotBlank(spellCheckQuery)) {%>
@@ -286,12 +245,162 @@ if(scopes != null) {
 		%>
 		</div>
 <% } %>
-<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
+<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search" %>"><fmt:message key="jsp.search.general.new-search" /></a>	
 		</form>
 		</div>
-
+<% if (availableFilters != null && availableFilters.size() > 0) { %>
+		<div class="discovery-search-filters panel-body">
+		<h5><fmt:message key="jsp.search.filter.heading" /></h5>
+		<p class="discovery-search-filters-hint"><fmt:message key="jsp.search.filter.hint" /></p>
+		<form action="simple-search" method="get">
+		<input type="hidden" value="<%= StringEscapeUtils.escapeHtml(searchScopeTemp) %>" name="location" />
+		<input type="hidden" value="<%= StringEscapeUtils.escapeHtml(query) %>" name="query" />
+		<% if (appliedFilterQueries.size() > 0 ) { 
+				int idx = 1;
+				for (String[] filter : appliedFilters)
+				{
+				    boolean found = false;
+				    %>
+				    <input type="hidden" id="filter_field_<%=idx %>" name="filter_field_<%=idx %>" value="<%= filter[0] %>" />
+					<input type="hidden" id="filter_type_<%=idx %>" name="filter_type_<%=idx %>" value="<%= filter[1] %>" />
+					<input type="hidden" id="filter_value_<%=idx %>" name="filter_value_<%=idx %>" value="<%= StringEscapeUtils.escapeHtml(filter[2]) %>" />
+					<%
+					idx++;
+				}
+		} %>
+		<select id="filtername" name="filtername">
+		<%
+			for (DiscoverySearchFilter searchFilter : availableFilters)
+			{
+			    String fkey = "jsp.search.filter."+searchFilter.getIndexFieldName();
+			    %><option value="<%= searchFilter.getIndexFieldName() %>"><fmt:message key="<%= fkey %>"/></option><%
+			}
+		%>
+		</select>
+		<select id="filtertype" name="filtertype">
+		<%
+			for (String opt : options)
+			{
+			    String fkey = "jsp.search.filter.op."+opt;
+			    %><option value="<%= opt %>"><fmt:message key="<%= fkey %>"/></option><%
+			}
+		%>
+		</select>
+		<input type="text" id="filterquery" name="filterquery" size="45"/>
+        <input type="hidden" value="<%= rpp %>" name="rpp" />
+        <input type="hidden" value="<%= sortedBy %>" name="sort_by" />
+        <input type="hidden" value="<%= order %>" name="order" />
+		<input class="btn btn-default" type="submit" value="<fmt:message key="jsp.search.filter.add"/>" />
+		</form>
+		</div>        
+<% } %>
         <%-- Include a component for modifying sort by, order, results per page, and et-al limit --%>
-   
+   <div class="discovery-pagination-controls panel-footer">
+   <form action="simple-search" method="get">
+   <input type="hidden" value="<%= StringEscapeUtils.escapeHtml(searchScopeTemp) %>" name="location" />
+   <input type="hidden" value="<%= StringEscapeUtils.escapeHtml(query) %>" name="query" />
+	<% if (appliedFilterQueries != null && appliedFilterQueries.size() > 0 ) { 
+				int idx = 1;
+				for (String[] filter : appliedFilters)
+				{
+				    boolean found = false;
+				    %>
+				    <input type="hidden" id="filter_field_<%=idx %>" name="filter_field_<%=idx %>" value="<%= filter[0] %>" />
+					<input type="hidden" id="filter_type_<%=idx %>" name="filter_type_<%=idx %>" value="<%= filter[1] %>" />
+					<input type="hidden" id="filter_value_<%=idx %>" name="filter_value_<%=idx %>" value="<%= StringEscapeUtils.escapeHtml(filter[2]) %>" />
+					<%
+					idx++;
+				}
+	} %>	
+           <label for="rpp"><fmt:message key="search.results.perpage"/></label>
+           <select name="rpp">
+<%
+               for (int i = 5; i <= 100 ; i += 5)
+               {
+                   String selected = (i == rpp ? "selected=\"selected\"" : "");
+%>
+                   <option value="<%= i %>" <%= selected %>><%= i %></option>
+<%
+               }
+%>
+           </select>
+           &nbsp;|&nbsp;
+<%
+           if (sortOptions != null && sortOptions.size() > 0)
+           {
+%>
+               <label for="sort_by"><fmt:message key="search.results.sort-by"/></label>
+               <select name="sort_by">
+                   <option value="score"><fmt:message key="search.sort-by.relevance"/></option>
+<%
+               for (String sortBy : sortOptions)
+               {
+                   String selected = (sortBy.equals(sortedBy) ? "selected=\"selected\"" : "");
+                   String mKey = "search.sort-by." + sortBy;
+                   %> <option value="<%= sortBy %>" <%= selected %>><fmt:message key="<%= mKey %>"/></option><%
+               }
+%>
+               </select>
+<%
+           }
+%>
+           <label for="order"><fmt:message key="search.results.order"/></label>
+           <select name="order">
+               <option value="ASC" <%= ascSelected %>><fmt:message key="search.order.asc" /></option>
+               <option value="DESC" <%= descSelected %>><fmt:message key="search.order.desc" /></option>
+           </select>
+           <label for="etal"><fmt:message key="search.results.etal" /></label>
+           <select name="etal">
+<%
+               String unlimitedSelect = "";
+               if (etAl < 1)
+               {
+                   unlimitedSelect = "selected=\"selected\"";
+               }
+%>
+               <option value="0" <%= unlimitedSelect %>><fmt:message key="browse.full.etal.unlimited"/></option>
+<%
+               boolean insertedCurrent = false;
+               for (int i = 0; i <= 50 ; i += 5)
+               {
+                   // for the first one, we want 1 author, not 0
+                   if (i == 0)
+                   {
+                       String sel = (i + 1 == etAl ? "selected=\"selected\"" : "");
+                       %><option value="1" <%= sel %>>1</option><%
+                   }
+
+                   // if the current i is greated than that configured by the user,
+                   // insert the one specified in the right place in the list
+                   if (i > etAl && !insertedCurrent && etAl > 1)
+                   {
+                       %><option value="<%= etAl %>" selected="selected"><%= etAl %></option><%
+                       insertedCurrent = true;
+                   }
+
+                   // determine if the current not-special case is selected
+                   String selected = (i == etAl ? "selected=\"selected\"" : "");
+
+                   // do this for all other cases than the first and the current
+                   if (i != 0 && i != etAl)
+                   {
+%>
+                       <option value="<%= i %>" <%= selected %>><%= i %></option>
+<%
+                   }
+               }
+%>
+           </select>
+           <input class="btn btn-default" type="submit" name="submit_search" value="<fmt:message key="search.update" />" />
+
+<%
+    if (admin_button)
+    {
+        %><input type="submit" class="btn btn-default" name="submit_export_metadata" value="<fmt:message key="jsp.general.metadataexport.button"/>" /><%
+    }
+%>
+</form>
+   </div>
 </div>   
 <% 
 
@@ -426,7 +535,7 @@ else if( qResults != null)
     </div>
 <% } %>
 
-<% if (collections != null && collections.length > 0 ) { %>
+<% if (collections.length > 0 ) { %>
     <div class="panel panel-info">
     <div class="panel-heading"><fmt:message key="jsp.search.results.colhits"/></div>
     <dspace:collectionlist collections="<%= collections %>" />

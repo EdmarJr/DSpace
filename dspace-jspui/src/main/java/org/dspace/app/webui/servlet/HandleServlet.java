@@ -190,6 +190,22 @@ public class HandleServlet extends DSpaceServlet {
 
 		} else if (dso.getType() == Constants.COLLECTION) {
 			Collection c = (Collection) dso;
+			
+			try {
+				SearchRequestProcessorWithManagerFactory
+						.getInstanceOfSearchRequestProcessorWithManager()
+						.gerenciarRequestParaUmSimpleSearch(context, request,
+								response);
+				
+				DiscoveryConfiguration discoveryConfiguration = SearchUtils.getDiscoveryConfiguration(dso);
+				List<DiscoverySearchFilter> availableFilters = discoveryConfiguration
+		                .getSearchFilters();
+		        request.setAttribute("availableFilters", availableFilters);
+				
+			} catch (SearchProcessorException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			// Store collection location in request
 			request.setAttribute("dspace.collection", c);

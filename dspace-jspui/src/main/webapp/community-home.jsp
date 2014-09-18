@@ -37,9 +37,6 @@
 
 <%
     // Retrieve attributes
-    for(int i = 0; i < 5; i++) {
-    	System.out.println("eee");
-    }
     Community community = (Community) request.getAttribute( "community" );
     Collection[] collections =
         (Collection[]) request.getAttribute("collections");
