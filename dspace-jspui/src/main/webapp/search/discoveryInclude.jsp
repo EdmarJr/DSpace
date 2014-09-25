@@ -189,49 +189,36 @@ if(scopes != null) {
     }
 }
 %>                                </select><br/>
+                               <%
+                               	int iTemp = 1;
+                                for (DiscoverySearchFilter searchFilterTemp : availableFilters) { 
+                                	String codigoMsgTemp = "jsp.pesquisa.byedmar." + searchFilterTemp.getIndexFieldName();
+                                %>
                                
-                               
-                               
-                                <label for="filter_value_1"><fmt:message key="jsp.pesquisa.byedmar.tipodocumento"/></label>
-                                <select id="filter_field_1" name="filter_field_1" hidden="true">
-									<option value="type" selected="selected">Title</option>
+                               	<div class="col-lg-3">
+									<label for="filter_value_<%=iTemp%>" class="control-label"><fmt:message 
+											 key="<%= codigoMsgTemp %>" /></label>
+								</div>
+								<select id="filter_field_<%=iTemp%>" name="filter_field_<%=iTemp%>" hidden="true">
+									<option value="<%=searchFilterTemp.getIndexFieldName()%>" selected="selected">Value</option>
 								</select>
-                                <select id="filter_type_1" name="filter_type_1" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
+								<select id="filter_type_<%=iTemp%>" name="filter_type_<%=iTemp%>" hidden="true">
+									<option value="contains" selected="selected"><fmt:message
+											key="jsp.search.filter.op.contains" /></option>
 								</select>
-                                <input type="text" id="filter_value_1" name="filter_value_1" value="" size="45"><br/>
+								<div class="col-lg-9">
+									<input class="form-control" type="text" id="filter_value_<%=iTemp%>"
+										name="filter_value_<%=iTemp%>" value="">
+								</div>
+                              		
+                               <%
+                               iTemp++;
+                                }%>
                                 
-                                
-                                <label for="filter_value_2"><fmt:message key="jsp.pesquisa.byedmar.numerodocumento"/></label>
-                                <select id="filter_field_2" name="filter_field_2" hidden="true">
-									<option value="number" selected="selected">Number</option>
-								</select>
-                                <select id="filter_type_2" name="filter_type_2" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_2" name="filter_value_2" value="" size="45"><br/>
-                                
-                                <label for="filter_value_3"><fmt:message key="jsp.pesquisa.byedmar.anodocumento"/></label>
-                                <select id="filter_field_3" name="filter_field_3" hidden="true">
-									<option value="year" selected="selected">Year</option>
-								</select>
-                                <select id="filter_type_3" name="filter_type_3" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_3" name="filter_value_3" value="" size="45"><br/>
-                                
-                                <label for="filter_value_4"><fmt:message key="jsp.pesquisa.byedmar.assuntodocumentonew"/></label>
-                                <select id="filter_field_4" name="filter_field_4" hidden="true">
-									<option value="subjectNew" selected="selected">Subject New</option>
-								</select>
-                                <select id="filter_type_4" name="filter_type_4" hidden="true">
-									<option value="contains" selected="selected"><fmt:message key="jsp.search.filter.op.contains"/></option>
-								</select>
-                                <input type="text" id="filter_value_4" name="filter_value_4" value="" size="45"><br/>
-            
                             
-                                <label for="query"><fmt:message key="jsp.pesquisa.byedmar.pesquisa.geral"/></label>
-                                <input type="text" size="50" id="query" name="query" value="<%= (query==null ? "" : StringEscapeUtils.escapeHtml(query)) %>"/>
+                                <div class="col-lg-3"><label class="control-label" for="query"><fmt:message key="jsp.pesquisa.byedmar.pesquisa.geral"/></label></div>
+                                <div class="col-lg-9"><input class="form-control" type="text" size="50" id="query" name="query" value="<%= (query==null ? "" : StringEscapeUtils.escapeHtml(query)) %>"/></div>
+                                <br/>
                                 <input type="submit" id="main-query-submit" class="btn btn-primary" value="<fmt:message key="jsp.general.go"/>" />
 <% if (StringUtils.isNotBlank(spellCheckQuery)) {%>
 	<p class="lead"><fmt:message key="jsp.search.didyoumean"><fmt:param><a id="spellCheckQuery" data-spell="<%= StringEscapeUtils.escapeHtml(spellCheckQuery) %>" href="#"><%= spellCheckQuery %></a></fmt:param></fmt:message></p>
