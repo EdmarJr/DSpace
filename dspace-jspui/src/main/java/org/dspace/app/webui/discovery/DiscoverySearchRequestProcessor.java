@@ -246,7 +246,7 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, 
         }
 
         DiscoveryConfiguration discoveryConfiguration = SearchUtils
-                .getDiscoveryConfiguration(scope);
+                .getDiscoveryConfiguration(scope,(String) request.getParameter("pesquisa"));
         
         adicionarParametroSortOptionsNaRequest(request, discoveryConfiguration);
         

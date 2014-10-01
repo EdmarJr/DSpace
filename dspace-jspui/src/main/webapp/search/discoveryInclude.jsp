@@ -273,7 +273,7 @@ if(scopes != null) {
 		%>
 		</div>
 <% } %>
-<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
+<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
 		</form>
 		</div>
 

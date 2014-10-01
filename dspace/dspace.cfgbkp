@@ -24,13 +24,13 @@
 ##### Basic information ######
 
 # DSpace installation directory
-dspace.dir = C:/DSpace
+dspace.dir = ${dspace.install.dir}
 
 # DSpace host name - should match base URL.  Do not include port number.
-dspace.hostname = ${dspace.hostname}
+dspace.hostname = testedspace
 
 # DSpace base host URL.  Include port number etc.
-dspace.baseUrl = ${dspace.baseUrl}
+dspace.baseUrl = http://testedspace.stj.jus.br
 
 # DSpace base URL.  Include port number etc., but NOT trailing slash
 # Change to xmlui if you wish to use the xmlui as the default, or remove
@@ -272,9 +272,9 @@ search.max-clauses = 2048
 # search.analyzer = org.dspace.search.DSNonStemmingAnalyzer
 
 # Chinese analyzer
-# search.analyzer = org.apache.lucene.analysis.cn.ChineseAnalyzer
+search.analyzer = org.apache.lucene.analysis.pt.PortugueseAnalyzer
 
-search.analyzer = org.dspace.search.DSAnalyzer
+#search.analyzer = org.dspace.search.DSAnalyzer
 
 # Boolean search operator to use, current supported values are OR and AND
 # If this config item is missing or commented out, OR is used
@@ -320,25 +320,6 @@ search.index.16 = year:dc.date.created
 search.index.17 = year:dc.date.issued
 search.index.18 = subjectNew:dc.description.abstract
 search.index.19 = subjectNew:dc.subject.other
-search.index.20 = numberParecer:dc.parecer.numero
-search.index.21 = parecerista:dc.contributor.author
-search.index.22 = titleDoutrinaException:dc.title
-search.index.23 = titleDoutrinaException:dc.title.alternative
-search.index.24 = titleNew:dc.title
-search.index.25 = titleNew:dc.title.alternative
-search.index.26 = titleNew:dc.description.tableofcontents
-search.index.27 = typeDocument:dc.type
-search.index.28 = subjectDoutrina:dc.description.abstract
-search.index.29 = subjectDoutrina:dc.subject.other
-search.index.30 = subjectDoutrina:dc.subject
-search.index.31 = titleRevista:dc.identifier.citation
-search.index.32 = authorNew:dc.contributor.author
-search.index.33 = authorNew:dc.contributor.other
-search.index.34 = authorNew:dc.description.tableofcontents
-search.index.35 = authorDoutrinaException:dc.contributor.author
-search.index.36 = artista:dc.contributor.author
-
-
 
 ##### Handle settings ######
 
@@ -1330,12 +1311,13 @@ plugin.named.org.dspace.app.webui.json.JSONRequest = \
 # Default Locale
 # A Locale in the form country or country_language or country_language_variant
 # if no default locale is defined the server default locale will be used.
-default.locale = en
+default.locale = pt_BR
 
 # All the Locales, that are supported by this instance of DSpace
 # A comma-separated list of Locales. All types of Locales country, country_language, country_language_variant
 # Note that the appropriate file are present, especially that all the Messages_x.properties are there
 # may be used, e. g: webui.supported.locales = en, de
+webui.supported.locales = en, pt_BR
 
 #### Submission License substitution variables ####
 # it is possible include contextual information in the submission license using substitution variables
@@ -1697,63 +1679,6 @@ report.dir = ${dspace.dir}/reports/
 #                            dc.identifier.govdoc, dc.identifier.uri(link), \
 #                            dc.identifier.isbn, dc.identifier.issn, \
 #                            dc.identifier.ismn, dc.identifier
-
-webui.itemdisplay.atos =	dc.title, \
-							dc.contributor.author, \
-							dc.date.issued, \
-							dc.description.abstract, \
-							dc.description, \
-							dc.identifier.citation, \
-							dc.relation.isversionof, \
-							dc.relation.hasversion, dc.relation.hasversionlink, \
-							dc.identifier.uri
-
-webui.itemdisplay.doutrina = dc.title, \
-							dc.contributor.author, \
-							dc.date.issued, \
-							dc.description.abstract, \
-							dc.description, \
-							dc.description.tableofcontents, \
-							dc.subject, \
-							dc.relation.isversionof, \
-							dc.publisher, \
-							dc.relation.ispartofseries, \
-							dc.identifier.citation, \
-							dc.type, \
-							dc.identifier.uri
-
-webui.itemdisplay.repositorio = dc.title, \
-							dc.contributor.author, \
-							dc.date.issued, \
-							dc.contributor.other, \
-							dc.description.abstract, \
-							dc.description, \
-							dc.subject, \
-							dc.relation.isversionof, \
-							dc.publisher, \
-							dc.identifier.citation, \
-							dc.type, \
-							dc.identifier.uri
-
-webui.itemdisplay.galeriaArtes = dc.title, \
-							dc.contributor.author, \
-							dc.date.created, \
-							dc.description.abstract, \
-							dc.description, \
-							dc.identifier.other, \
-							dc.type, \
-							dc.identifier.uri
-
-webui.itemdisplay.pareceresAssessoriaJuridica = dc.title, \
-							dc.contributor.author, \
-							dc.date.issued, \
-							dc.description.abstract, \
-							dc.description, \
-							dc.subject, \
-							dc.identifier.citation, \
-							dc.type, \
-							dc.identifier.uri
-
 #
 # When using "resolver" in webui.itemdisplay to render identifiers as resolvable
 # links, the base URL is taken from <code>webui.resolver.<n>.baseurl</code>
@@ -1787,13 +1712,6 @@ plugin.single.org.dspace.app.webui.util.StyleSelection = \
 # Specify which collections use which views by Handle.
 #
 # webui.itemdisplay.<style>.collections = <collection handle>, ...
-
-webui.itemdisplay.atos.collections = 123456789/1, 123456789/4, 123456789/5, 123456789/6, 123456789/7
-webui.itemdisplay.doutrina.collections = 123456789/2, 123456789/8, 123456789/9, 123456789/10, 123456789/26, 123456789/11, 123456789/12, 123456789/13, 123456789/14, 123456789/15, 123456789/16, 123456789/17
-webui.itemdisplay.repositorio.collections = 123456789/3, 123456789/18, 123456789/19, 123456789/20
-webui.itemdisplay.galeriaArtes.collections = 123456789/21
-webui.itemdisplay.pareceresAssessoriaJuridica.collections = 123456789/22
-
 #
 # FIXME: This should be more database-driven
 #

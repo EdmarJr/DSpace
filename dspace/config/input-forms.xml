@@ -15,6 +15,32 @@
 
  <form-map>
    <name-map collection-handle="default" form-name="traditional" />
+   
+   <name-map collection-handle="123456789/1" form-name="atosAdm" />
+   <name-map collection-handle="123456789/4" form-name="atosNormativosENFAM" />
+   <name-map collection-handle="123456789/5" form-name="atosNormativosSTJ" />
+   <name-map collection-handle="123456789/6" form-name="atosNormativosTFR" />
+   <name-map collection-handle="123456789/7" form-name="boletimServicoSTJ" />
+   
+   <name-map collection-handle="123456789/2" form-name="doutrina" />
+   <name-map collection-handle="123456789/8" form-name="artigosAcessoAberto" />
+   <name-map collection-handle="123456789/9" form-name="artigosAcessoRestrito" />
+   <name-map collection-handle="123456789/10" form-name="bibliografiasSelecionadas" />
+   <name-map collection-handle="123456789/26" form-name="colecaoTeste" />
+   <name-map collection-handle="123456789/11" form-name="livrosDigitais" />
+   <name-map collection-handle="123456789/12" form-name="obrasRaras" />
+   <name-map collection-handle="123456789/13" form-name="palestras" />
+   <name-map collection-handle="123456789/14" form-name="producaoIntelectualMinistrosSTJ" />
+   <name-map collection-handle="123456789/15" form-name="producaoIntelectualServidoresSTJ" />
+   <name-map collection-handle="123456789/16" form-name="sumariosLivros" />
+   <name-map collection-handle="123456789/17" form-name="textosJuridicos" />   
+   
+   <name-map collection-handle="123456789/3" form-name="repositorioInstitucional" />
+   <name-map collection-handle="123456789/18" form-name="atasSTJ" />
+   <name-map collection-handle="123456789/19" form-name="atasTFR" />
+   <name-map collection-handle="123456789/20" form-name="eventos" />
+   <name-map collection-handle="123456789/21" form-name="galeriaArtes" />
+   <name-map collection-handle="123456789/22" form-name="pareceresAssessoriaJuridica" />
  </form-map>
 
 
@@ -36,172 +62,3703 @@
 
  <form-definitions>
 
-   <form name="traditional">
-     <page number="1">
+	<form name="traditional">
+     <page number="1">	
        <field>
          <dc-schema>dc</dc-schema>
          <dc-element>contributor</dc-element>
          <dc-qualifier>author</dc-qualifier>
          <repeatable>true</repeatable>
-         <label>Authors</label>
-         <input-type>name</input-type>
-         <hint>Enter the names of the authors of this item below.</hint>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
          <required></required>
        </field>
-
        <field>
          <dc-schema>dc</dc-schema>
          <dc-element>title</dc-element>
          <dc-qualifier></dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Title</label>
+         <label>Título</label>
          <input-type>onebox</input-type>
-         <hint>Enter the main title of the item.</hint>
-         <required>You must enter a main title for this item.</required>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
        </field>
-
-       <field>
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>title</dc-element>
          <dc-qualifier>alternative</dc-qualifier>
-         <repeatable>true</repeatable>
-         <label>Other Titles</label>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
          <input-type>onebox</input-type>
-         <hint>If the item has any alternative titles, please enter them below.</hint>
+         <hint>Título alternativo e/ou variações do título.</hint>
          <required></required>
        </field>
-
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
        <field>
          <dc-schema>dc</dc-schema>
          <dc-element>date</dc-element>
          <dc-qualifier>issued</dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Date of Issue</label>
+         <label>Data de publicação</label>
          <input-type>date</input-type>
-         <hint>Please give the date of previous publication or public distribution
-                        below.  You can leave out the day and/or month if they aren't
-                        applicable.</hint>
-         <required>You must enter at least the year.</required>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
        </field>
-
-       <field>
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>publisher</dc-element>
          <dc-qualifier></dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Publisher</label>
+         <label>Editora</label>
          <input-type>onebox</input-type>
-         <hint>Enter the name of the publisher of the previously issued instance of this item.</hint>
+         <hint>Digite a editora.</hint>
          <required></required>
        </field>
-
-       <field>
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>identifier</dc-element>
          <dc-qualifier>citation</dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Citation</label>
+         <label>Fonte</label>
          <input-type>onebox</input-type>
-         <hint>Enter the standard citation for the previously issued instance of this item.</hint>
+         <hint>Digite a fonte de publicação do item.</hint>
          <required></required>
        </field>
-
-       <field>
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>relation</dc-element>
          <dc-qualifier>ispartofseries</dc-qualifier>
-         <repeatable>true</repeatable>
-         <label>Series/Report No.</label>
-         <input-type>series</input-type>
-         <hint>Enter the series and number assigned to this item by your community.</hint>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
          <required></required>
        </field>
-
-       <field>
-         <dc-schema>dc</dc-schema>
-         <dc-element>identifier</dc-element>
-         <dc-qualifier></dc-qualifier>
-         <!-- An input-type of qualdrop_value MUST be marked as repeatable -->
-         <repeatable>true</repeatable>
-         <label>Identifiers</label>
-         <input-type value-pairs-name="common_identifiers">qualdrop_value</input-type>
-         <hint>If the item has any identification numbers or codes associated with
-it, please enter the types and the actual numbers or codes below.</hint>
-         <required></required>
-       </field>
-
-       <field>
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>type</dc-element>
          <dc-qualifier></dc-qualifier>
          <repeatable>true</repeatable>
-         <label>Type</label>
+         <label>Tipo</label>
          <input-type value-pairs-name="common_types">dropdown</input-type>
-         <hint>Select the type(s) of content of the item. To select more than one value in the list, you may have to hold down the "CTRL" or "Shift" key.</hint>
+         <hint>Selecione o tipo de documento.</hint>
          <required></required>
        </field>
-
        <field>
          <dc-schema>dc</dc-schema>
          <dc-element>language</dc-element>
          <dc-qualifier>iso</dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Language</label>
+         <label>Idioma</label>
          <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
-         <hint>Select the language of the main content of the item.  If the language does not appear in the list below, please select 'Other'.  If the content does not really have a language (for example, if it is a dataset or an image) please select 'N/A'.</hint>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
          <required></required>
        </field>
      </page>
-
      <page number="2">
-       <field>
+	  <field>
          <dc-schema>dc</dc-schema>
          <dc-element>subject</dc-element>
          <dc-qualifier></dc-qualifier>
          <!-- An input-type of twobox MUST be marked as repeatable -->
          <repeatable>true</repeatable>
-         <label>Subject Keywords</label>
+         <label>Assuntos</label>
          <input-type>twobox</input-type>
-         <hint>Enter appropriate subject keywords or phrases below. </hint>
+         <hint>Digite as palavras-chave</hint>
          <required></required>
          <vocabulary>srsc</vocabulary>
-       </field>
-
-       <field>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
          <dc-schema>dc</dc-schema>
          <dc-element>description</dc-element>
          <dc-qualifier>abstract</dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Abstract</label>
+         <label>Resumo</label>
          <input-type>textarea</input-type>
-         <hint>Enter the abstract of the item below. </hint>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
          <required></required>
-       </field>
-
-       <field>
-         <dc-schema>dc</dc-schema>
-         <dc-element>description</dc-element>
-         <dc-qualifier>sponsorship</dc-qualifier>
-         <repeatable>false</repeatable>
-         <label>Sponsors</label>
-         <input-type>textarea</input-type>
-         <hint>Enter the names of any sponsors and/or funding codes in the box below. </hint>
-         <required></required>
-       </field>
-
-       <field>
+       </field>	   
+	   <field>
          <dc-schema>dc</dc-schema>
          <dc-element>description</dc-element>
          <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+   
+	<form name="atosAdm">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
          <repeatable>false</repeatable>
-         <label>Description</label>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura </label>
+         <input-type>date</input-type>
+         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>uri</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo de ato</label>
+		 <input-type value-pairs-name="tipos_de_ato_comum">dropdown</input-type>
+         <hint>Selecione o tipo de ato</hint>
+         <required>Selecione o tipo de ato.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>atos</dc-element>
+         <dc-qualifier>numero</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Número do ato</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número do ato</hint>
+         <required>Insira o número do ato.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
          <input-type>textarea</input-type>
-         <hint>Enter any other description or comments in this box. </hint>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
          <required></required>
        </field>
      </page>
    </form>
 
+	<form name="atosNormativosENFAM">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura </label>
+         <input-type>date</input-type>
+         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>uri</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo de ato</label>
+		 <input-type value-pairs-name="tipos_de_ato_comum">dropdown</input-type>
+         <hint>Selecione o tipo de ato</hint>
+         <required>Selecione o tipo de ato.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>atos</dc-element>
+         <dc-qualifier>numero</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Número do ato</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número do ato</hint>
+         <required>Insira o número do ato.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="atosNormativosSTJ">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura </label>
+         <input-type>date</input-type>
+         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>uri</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo de ato</label>
+		 <input-type value-pairs-name="tipos_de_ato_comum">dropdown</input-type>
+         <hint>Selecione o tipo de ato</hint>
+         <required>Selecione o tipo de ato.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>atos</dc-element>
+         <dc-qualifier>numero</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Número do ato</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número do ato</hint>
+         <required>Insira o número do ato.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="atosNormativosTFR">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura </label>
+         <input-type>date</input-type>
+         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>uri</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo de ato</label>
+		 <input-type value-pairs-name="tipos_de_ato_comum">dropdown</input-type>
+         <hint>Selecione o tipo de ato</hint>
+         <required>Selecione o tipo de ato.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>atos</dc-element>
+         <dc-qualifier>numero</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Número do ato</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número do ato</hint>
+         <required>Insira o número do ato.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="boletimServicoSTJ">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura </label>
+         <input-type>date</input-type>
+         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>uri</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo de ato</label>
+		 <input-type value-pairs-name="tipos_de_ato_comum">dropdown</input-type>
+         <hint>Selecione o tipo de ato</hint>
+         <required>Selecione o tipo de ato.</required>
+       </field>	   
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>atos</dc-element>
+         <dc-qualifier>numero</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Número do ato</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número do ato</hint>
+         <required>Insira o número do ato.</required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="common_types">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+   
+	<form name="doutrina">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="artigosAcessoAberto">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="artigosAcessoRestrito">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+ 	<form name="bibliografiasSelecionadas">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="colecaoTeste">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="livrosDigitais">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="obrasRaras">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="palestras">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="producaoIntelectualMinistrosSTJ">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="producaoIntelectualServidoresSTJ">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="sumariosLivros">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+	<form name="textosJuridicos">
+     <page number="1">	
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>ispartofseries</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Série</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a série.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosDoutrina">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+     <page number="2">
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	  <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+      <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+   <form name="repositorioInstitucional">
+     <page number="1">
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Unidade responsável</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a unidade responsável.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosRepositorioInstitucional">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+   </form>
+
+   <form name="atasSTJ">
+     <page number="1">
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Unidade responsável</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a unidade responsável.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosRepositorioInstitucional">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+	<page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+		</field>
+	</page>
+   </form>
+
+   <form name="atasTFR">
+     <page number="1">
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Unidade responsável</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a unidade responsável.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosRepositorioInstitucional">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+	<page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+		</field>
+	</page>
+   </form>
+
+   <form name="eventos">
+     <page number="1">
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Autores</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos autores deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Unidade responsável</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a unidade responsável.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>relation</dc-element>
+         <dc-qualifier>isversionof</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Edição</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a edição.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>publisher</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Editora</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a editora.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosRepositorioInstitucional">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+	<page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Outros Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Insira outras palavras-chave abaixo</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>	   
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>tableofcontents</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas de conteúdo</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+		</field>
+	</page>
+   </form>
+
+   <form name="galeriaArtes">
+     <page number="1">
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Artista</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o artista referente.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título da obra</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal da obra.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Localização</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a localização.</hint>
+         <required></required>
+         <vocabulary></vocabulary>
+      </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>other</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Nº de patrimônio</label>
+         <input-type>onebox</input-type>
+         <hint>Insira o número de patrimônio.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de criação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosRepositorioInstitucional">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+	<page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Descrição</label>
+         <input-type>textarea</input-type>
+         <hint>Insira a descrição da obra.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Informações gerais</label>
+         <input-type>textarea</input-type>
+         <hint>Insira a informações da obra.</hint>
+         <required></required>
+       </field>
+	</page>
+   </form>
+
+   <form name="pareceresAssessoriaJuridica">
+     <page number="1">
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>contributor</dc-element>
+         <dc-qualifier>author</dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Parecerista</label>
+         <input-type>onebox</input-type>
+         <hint>Digite os nomes dos pareceristas deste item.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Título</label>
+         <input-type>onebox</input-type>
+         <hint>Digite o título principal do item.</hint>
+         <required>Você deve digitar um título principal para este item.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>title</dc-element>
+         <dc-qualifier>alternative</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Outros títulos</label>
+         <input-type>onebox</input-type>
+         <hint>Título alternativo e/ou variações do título.</hint>
+         <required></required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>created</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de assinatura</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de assinatura do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>date</dc-element>
+         <dc-qualifier>issued</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Data de publicação</label>
+         <input-type>date</input-type>
+         <hint>Digite o ano de publicação do item. Digite o dia e/ou mês se forem aplicáveis.</hint>
+         <required>Você deve digitar pelo menos o ano.</required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>identifier</dc-element>
+         <dc-qualifier>citation</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Fonte</label>
+         <input-type>onebox</input-type>
+         <hint>Digite a fonte de publicação do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>type</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Tipo</label>
+         <input-type value-pairs-name="tiposAtosPareceresAssessoriaJuridica">dropdown</input-type>
+         <hint>Selecione o tipo de documento.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>language</dc-element>
+         <dc-qualifier>iso</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Idioma</label>
+         <input-type value-pairs-name="common_iso_languages">dropdown</input-type>
+         <hint>Selecione o idioma do conteúdo principal do item.</hint>
+         <required></required>
+       </field>
+     </page>
+	<page number="2">
+		<field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>subject</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <!-- An input-type of twobox MUST be marked as repeatable -->
+         <repeatable>true</repeatable>
+         <label>Assuntos</label>
+         <input-type>twobox</input-type>
+         <hint>Digite as palavras-chave</hint>
+         <required></required>
+         <vocabulary>srsc</vocabulary>
+      </field>
+       <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier>abstract</dc-qualifier>
+         <repeatable>false</repeatable>
+         <label>Resumo</label>
+         <input-type>textarea</input-type>
+         <hint>Insira um resumo sobre o conteúdo do item.</hint>
+         <required></required>
+       </field>
+	   <field>
+         <dc-schema>dc</dc-schema>
+         <dc-element>description</dc-element>
+         <dc-qualifier></dc-qualifier>
+         <repeatable>true</repeatable>
+         <label>Notas</label>
+         <input-type>onebox</input-type>
+         <hint></hint>
+         <required></required>
+       </field>
+	</page>
+   </form>
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    <form name="one">
      <page number="1">
        <field>
@@ -233,7 +3790,86 @@ it, please enter the types and the actual numbers or codes below.</hint>
  <!-- stores the associated stored-values in the database.                  -->
 
  <form-value-pairs>
-   <value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
+	<value-pairs value-pairs-name="tipos_de_ato_comum" dc-term="type">
+     <pair>
+       <displayed-value>Ata</displayed-value>
+       <stored-value>Ata</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Ato regimental</displayed-value>
+       <stored-value>Ato regimental</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Ato deliberativo</displayed-value>
+       <stored-value>Ato deliberativo</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Ato regulamentar</displayed-value>
+       <stored-value>Ato regulamentar</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Acordo de cooperação </displayed-value>
+       <stored-value>Acordo de cooperação </stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Certidão</displayed-value>
+       <stored-value>Certidão</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Comunicado</displayed-value>
+       <stored-value>Comunicado</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Despacho</displayed-value>
+       <stored-value>Despacho</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Edital</displayed-value>
+       <stored-value>Edital</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Emenda regimental</displayed-value>
+       <stored-value>Emenda regimental</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Instrução normativa</displayed-value>
+       <stored-value>Instrução normativa</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Ordem de serviço</displayed-value>
+       <stored-value>Ordem de serviço</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Orientação normativa</displayed-value>
+       <stored-value>Orientação normativa</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Portaria</displayed-value>
+       <stored-value>Portaria</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Portaria conjunta</displayed-value>
+       <stored-value>Portaria conjunta</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Regimento interno</displayed-value>
+       <stored-value>Regimento interno</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Resolução</displayed-value>
+       <stored-value>Resolução</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Termo de homologação</displayed-value>
+       <stored-value>Termo de homologação</stored-value>
+     </pair>
+     <pair>
+       <displayed-value>Outros</displayed-value>
+       <stored-value>Outros</stored-value>
+     </pair>
+   </value-pairs>
+
+	<value-pairs value-pairs-name="common_identifiers" dc-term="identifier">
      <pair>
        <displayed-value>ISSN</displayed-value>
        <stored-value>issn</stored-value>
@@ -260,8 +3896,12 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </pair>
    </value-pairs>
 
-   <value-pairs value-pairs-name="common_types" dc-term="type">
-     <pair>
+	<value-pairs value-pairs-name="common_types" dc-term="type">
+   <pair>
+       <displayed-value>Ato administrativo</displayed-value>
+       <stored-value>Ato administrativo</stored-value>
+     </pair>
+    <!-- <pair>
        <displayed-value>Animation</displayed-value>
        <stored-value>Animation</stored-value>
      </pair>
@@ -348,13 +3988,170 @@ it, please enter the types and the actual numbers or codes below.</hint>
      <pair>
        <displayed-value>Other</displayed-value>
        <stored-value>Other</stored-value>
-     </pair>
+     </pair>-->
    </value-pairs>
+   
+	<value-pairs value-pairs-name="tiposAtosDoutrina" dc-term="type">
+		<pair>
+			<displayed-value>Artigo de jornal</displayed-value>
+			<stored-value>Artigo de jornal</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Artigo de revista</displayed-value>
+			<stored-value>Artigo de revista</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Capítulo de livro</displayed-value>
+			<stored-value>Capitulo de livro</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Discurso</displayed-value>
+			<stored-value>Discurso</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Dissertação</displayed-value>
+			<stored-value>Dissertacao</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Entrevista</displayed-value>
+			<stored-value>Entrevista</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Livro</displayed-value>
+			<stored-value>Livro</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Palestra</displayed-value>
+			<stored-value>Palestra</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Prefácio</displayed-value>
+			<stored-value>Prefacio</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Preprint</displayed-value>
+			<stored-value>Preprint</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Sumário de livro</displayed-value>
+			<stored-value>Sumario de livro</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>TCC/Especialização</displayed-value>
+			<stored-value>TCC_Especializacao</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Tese</displayed-value>
+			<stored-value>Tese</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Outros</displayed-value>
+			<stored-value>Outros</stored-value>
+		</pair>
+	</value-pairs>
+	
+	<value-pairs value-pairs-name="tiposAtosRepositorioInstitucional" dc-term="type">
+		<pair>
+			<displayed-value>Ato administrativo</displayed-value>
+			<stored-value>Ato administrativo</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Ata</displayed-value>
+			<stored-value>Ata</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Cartaz</displayed-value>
+			<stored-value>Cartaz</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Cartilha</displayed-value>
+			<stored-value>Cartilha</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Discurso</displayed-value>
+			<stored-value>Discurso</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Dissertação</displayed-value>
+			<stored-value>Dissertacao</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Entrevista</displayed-value>
+			<stored-value>Entrevista</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Escultura</displayed-value>
+			<stored-value>Escultura</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Evento</displayed-value>
+			<stored-value>Evento</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Folder</displayed-value>
+			<stored-value>Folder</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Fotografia</displayed-value>
+			<stored-value>Fotografia</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Livro</displayed-value>
+			<stored-value>Livro</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Manual</displayed-value>
+			<stored-value>Manual</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Palestra</displayed-value>
+			<stored-value>Palestra</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Parecer</displayed-value>
+			<stored-value>Parecer</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Pintura</displayed-value>
+			<stored-value>Pintura</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Preprint</displayed-value>
+			<stored-value>Preprint</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Relatório</displayed-value>
+			<stored-value>Relatorio</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>TCC/Especialização</displayed-value>
+			<stored-value>TCC_Especializacao</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Tese</displayed-value>
+			<stored-value>Tese</stored-value>
+		</pair>
+		<pair>
+			<displayed-value>Outros</displayed-value>
+			<stored-value>Outros</stored-value>
+		</pair>
+	</value-pairs>
+	
+	<value-pairs value-pairs-name="tiposAtosPareceresAssessoriaJuridica" dc-term="type">
+		<pair>
+			<displayed-value>Parecer</displayed-value>
+			<stored-value>Parecer</stored-value>
+		</pair>
+	</value-pairs>
 
-   <!-- default language order: (from dspace 1.2.1)
-        "en_US", "en", "es", "de", "fr", "it", "ja", "zh", "other", ""
-     -->
-   <value-pairs value-pairs-name="common_iso_languages" dc-term="language_iso">
+	<value-pairs value-pairs-name="common_iso_languages" dc-term="language_iso">
+	<!-- default language order: (from dspace 1.2.1)
+		"en_US", "en", "es", "de", "fr", "it", "ja", "zh", "other", ""
+	-->
+   <pair>
+       <displayed-value>Português (Brasil)</displayed-value>
+       <stored-value>pt-BR</stored-value>
+     </pair>
      <pair>
        <displayed-value>N/A</displayed-value>
        <stored-value></stored-value>
@@ -387,6 +4184,7 @@ it, please enter the types and the actual numbers or codes below.</hint>
        <displayed-value>Japanese</displayed-value>
        <stored-value>ja</stored-value>
      </pair>
+	  
      <pair>
        <displayed-value>Chinese</displayed-value>
        <stored-value>zh</stored-value>
@@ -397,6 +4195,6 @@ it, please enter the types and the actual numbers or codes below.</hint>
      </pair>
    </value-pairs>
 
-    </form-value-pairs>
+	</form-value-pairs>
 
 </input-forms>

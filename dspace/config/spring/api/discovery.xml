@@ -45,11 +45,32 @@
 
                <!--Use site to override the default configuration for the home page & default discovery page-->
                <entry key="site" value-ref="homepageConfiguration" />
-               <entry key="123456789/1" value-ref="repositorioInstitucionalConfiguracao1"/>
-			   <entry key="123456789/2" value-ref="repositorioInstitucionalConfiguracao2"/>
-			   <entry key="123456789/3" value-ref="repositorioInstitucionalConfiguracao3"/>
-			   
-			   
+               <entry key="123456789/1" value-ref="atosConfiguracao"/>
+			   <entry key="123456789/2" value-ref="doutrinaConfiguracaoPai"/>
+			   <entry key="123456789/3" value-ref="repositorioInstitucionalConfiguracao1"/>
+			   <entry key="123456789/1avancada" value-ref="pesaAtos"/>
+			   <entry key="123456789/4avancada" value-ref="pesaAtos"/>
+			   <entry key="123456789/5avancada" value-ref="pesaAtos"/>
+			   <entry key="123456789/6avancada" value-ref="pesaAtos"/>
+			   <entry key="123456789/7avancada" value-ref="pesaAtos"/>
+			   <entry key="123456789/2avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/8avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/9avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/10avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/26avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/11avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/12avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/13avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/14avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/15avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/16avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/17avancada" value-ref="pesaDoutrina"/>
+			   <entry key="123456789/3avancada" value-ref="pesaRepositorio"/>
+			   <entry key="123456789/18avancada" value-ref="pesaRepositorio"/>
+			   <entry key="123456789/19avancada" value-ref="pesaRepositorio"/>
+			   <entry key="123456789/20avancada" value-ref="pesaRepositorio"/>
+			   <entry key="123456789/21avancada" value-ref="pesaGaleria"/>
+			   <entry key="123456789/22avancada" value-ref="pesaAssJuridica"/>
             </map>
         </property>
         <property name="toIgnoreMetadataFields">
@@ -986,6 +1007,1299 @@
         <!-- When true a "did you mean" example will be displayed, value can be true or false -->
         <property name="spellCheckEnabled" value="true"/>
     </bean>
+	
+	<!--INICIO PESQUISA AVANCADA-->
+	
+	<!--INICIO PESQUISA AVANCADA ATOS-->
+	
+	
+	<bean id="pesaAtos" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+				<ref bean="searchPesaAtosTitle" />
+				<ref bean="searchPesaAtosAuthor" />
+				<ref bean="searchPesaAtosDateIssued" />
+				<ref bean="searchPesaAtosDescriptionAbstract" />
+				<ref bean="searchPesaAtosDescription" />
+				<ref bean="searchPesaAtosIdentifierCitation" />
+				<ref bean="searchPesaAtosRelationIsVersionOf" />
+				<ref bean="searchPesaAtosRelationHasVersion" />
+				<ref bean="searchPesaAtosRelationHasVersionLink" />
+				<ref bean="searchPesaAtosIdentifierUri" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all queries done by discovery for this configuration-->
+        <!--<property name="defaultFilterQueries">-->
+            <!--<list>-->
+                <!--Only find items-->
+                <!--<value>search.resourcetype:2</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="fulltext"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
+                the metadata fields below-->
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+	
+	
+	
+	
+	<bean id="searchPesaAtosTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosTitle"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosAuthor"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.author</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosDateIssued" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosDateIssued"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosDescriptionAbstract" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosDescriptionAbstract"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosDescription" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosDescription"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosIdentifierCitation" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosIdentifierCitation"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosRelationIsVersionOf" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosRelationIsVersionOf"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.isversionof</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosRelationHasVersion" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosRelationHasVersion"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversion</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosRelationHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosRelationHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAtosIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosIdentifierUri"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<!--FINAL PESQUISA AVANCADA ATOS-->
+	
+	
+	
+	<!--INICIO PESQUISA AVANCADA DOUTRINA-->
+	
+	
+	<bean id="pesaDoutrina" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+				<ref bean="searchPesaDoutrinaTitle" />
+				<ref bean="searchPesaDoutrinaAuthor" />
+				<ref bean="searchPesaDoutrinaDateIssued" />
+				<ref bean="searchPesaDoutrinaDescriptionAbstract" />
+				<ref bean="searchPesaDoutrinaDescription" />
+				<ref bean="searchPesaDoutrinaDescriptionTableOfContents" />
+				<ref bean="searchPesaDoutrinaSubject" />				
+				<ref bean="searchPesaDoutrinaRelationIsVersionOf" />
+				<ref bean="searchPesaDoutrinaPublisher" />
+				<ref bean="searchPesaDoutrinaRelationIsPartOfSeries" />
+				<ref bean="searchPesaDoutrinaIdentifierCitation" />
+				<ref bean="searchPesaDoutrinaType" />
+				<ref bean="searchPesaDoutrinaIdentifierUri" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all queries done by discovery for this configuration-->
+        <!--<property name="defaultFilterQueries">-->
+            <!--<list>-->
+                <!--Only find items-->
+                <!--<value>search.resourcetype:2</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="fulltext"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
+                the metadata fields below-->
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+	
+	
+	
+	
+	<bean id="searchPesaDoutrinaTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaTitle"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaAuthor"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.author</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaDateIssued" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaDateIssued"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaDescriptionAbstract" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaDescriptionAbstract"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaDoutrinaDescription" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaDescription"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaDescriptionTableOfContents" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaDescriptionTableOfContents"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.tableofcontents</value>
+            </list>
+        </property>
+    </bean>
+	<bean id="searchPesaDoutrinaSubject" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaSubject"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaDoutrinaIdentifierCitation" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaIdentifierCitation"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	
+	<bean id="searchPesaDoutrinaRelationIsVersionOf" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaRelationIsVersionOf"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.isversionof</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaPublisher" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaPublisher"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.publisher</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaRelationIsPartOfSeries" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaRelationIsPartOfSeries"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.ispartofseries</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaType" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaType"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+    </bean>	
+	
+	<bean id="searchPesaDoutrinaRelationHasVersion" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaRelationHasVersion"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversion</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaRelationHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaRelationHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaDoutrinaIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaDoutrinaIdentifierUri"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<!--FINAL PESQUISA AVANCADA DOUTRINA-->
+	
+	
+	
+	
+	
+	
+	<!--INICIO PESQUISA AVANCADA REPOSITORIO-->
+	
+	
+	<bean id="pesaRepositorio" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+				<ref bean="searchPesaRepositorioTitle" />
+				<ref bean="searchPesaRepositorioAuthor" />
+				<ref bean="searchPesaRepositorioDateIssued" />
+				<ref bean="searchPesaRepositorioContributorOther" />
+				<ref bean="searchPesaRepositorioDescriptionAbstract" />
+				<ref bean="searchPesaRepositorioDescription" />
+				<ref bean="searchPesaRepositorioSubject" />				
+				<ref bean="searchPesaRepositorioRelationIsVersionOf" />
+				<ref bean="searchPesaRepositorioPublisher" />
+				<ref bean="searchPesaRepositorioIdentifierCitation" />
+				<ref bean="searchPesaRepositorioType" />
+				<ref bean="searchPesaRepositorioIdentifierUri" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all queries done by discovery for this configuration-->
+        <!--<property name="defaultFilterQueries">-->
+            <!--<list>-->
+                <!--Only find items-->
+                <!--<value>search.resourcetype:2</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="fulltext"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
+                the metadata fields below-->
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+	
+	
+	
+	
+	<bean id="searchPesaRepositorioTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioTitle"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioAuthor"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.author</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioDateIssued" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioDateIssued"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioContributorOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioContributorOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.other</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaRepositorioDescriptionAbstract" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioDescriptionAbstract"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaRepositorioDescription" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioDescription"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioDescriptionTableOfContents" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioDescriptionTableOfContents"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.tableofcontents</value>
+            </list>
+        </property>
+    </bean>
+	<bean id="searchPesaRepositorioSubject" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioSubject"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaRepositorioIdentifierCitation" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioIdentifierCitation"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	
+	<bean id="searchPesaRepositorioRelationIsVersionOf" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioRelationIsVersionOf"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.isversionof</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioPublisher" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioPublisher"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.publisher</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioRelationIsPartOfSeries" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioRelationIsPartOfSeries"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.ispartofseries</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioType" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioType"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+    </bean>	
+	
+	<bean id="searchPesaRepositorioRelationHasVersion" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioRelationHasVersion"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversion</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioRelationHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioRelationHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaRepositorioIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaRepositorioIdentifierUri"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<!--FINAL PESQUISA AVANCADA REPOSITORIO-->
+	
+	
+	
+	<!--INICIO PESQUISA AVANCADA GALERIA-->
+	
+	
+	<bean id="pesaGaleria" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+				<ref bean="searchPesaGaleriaTitle" />
+				<ref bean="searchPesaGaleriaAuthor" />
+				<ref bean="searchPesaGaleriaDateCreated" />
+				<ref bean="searchPesaGaleriaDescriptionAbstract" />
+				<ref bean="searchPesaGaleriaDescription" />		
+				<ref bean="searchPesaGaleriaIdentifierOther" />
+				<ref bean="searchPesaGaleriaType" />
+				<ref bean="searchPesaGaleriaIdentifierUri" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all queries done by discovery for this configuration-->
+        <!--<property name="defaultFilterQueries">-->
+            <!--<list>-->
+                <!--Only find items-->
+                <!--<value>search.resourcetype:2</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="fulltext"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
+                the metadata fields below-->
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+	
+	
+	
+	
+	<bean id="searchPesaGaleriaTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaTitle"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaAuthor"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.author</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaDateIssued" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaDateIssued"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaDateCreated" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaDateCreated"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.created</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaGaleriaContributorOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaContributorOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.other</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaGaleriaDescriptionAbstract" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaDescriptionAbstract"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaGaleriaDescription" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaDescription"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaDescriptionTableOfContents" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaDescriptionTableOfContents"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.tableofcontents</value>
+            </list>
+        </property>
+    </bean>
+	<bean id="searchPesaGaleriaSubject" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaSubject"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaGaleriaIdentifierCitation" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaIdentifierCitation"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaIdentifierOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaIdentifierOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	
+	<bean id="searchPesaGaleriaRelationIsVersionOf" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaRelationIsVersionOf"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.isversionof</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaPublisher" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaPublisher"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.publisher</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaRelationIsPartOfSeries" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaRelationIsPartOfSeries"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.ispartofseries</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaType" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaType"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+    </bean>	
+	
+	<bean id="searchPesaGaleriaRelationHasVersion" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaRelationHasVersion"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversion</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaRelationHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaRelationHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaGaleriaIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaGaleriaIdentifierUri"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<!--FINAL PESQUISA AVANCADA GALERIA-->
+	
+	
+	
+	
+	
+	<!--INICIO PESQUISA AVANCADA ASSJURIDICA-->
+	
+	
+	<bean id="pesaAssJuridica" class="org.dspace.discovery.configuration.DiscoveryConfiguration" scope="prototype">
+        <!--Which sidebar facets are to be displayed-->
+        <property name="sidebarFacets">
+            <list>
+            </list>
+        </property>
+        <!--The search filters which can be used on the discovery search page-->
+        <property name="searchFilters">
+            <list>
+				<ref bean="searchPesaAssJuridicaTitle" />
+				<ref bean="searchPesaAssJuridicaAuthor" />
+				<ref bean="searchPesaAssJuridicaDateIssued" />
+				<ref bean="searchPesaAssJuridicaDescriptionAbstract" />
+				<ref bean="searchPesaAssJuridicaDescription" />		
+				<ref bean="searchPesaAssJuridicaSubject" />
+				<ref bean="searchPesaAssJuridicaType" />
+				<ref bean="searchPesaAssJuridicaIdentifierUri" />
+            </list>
+        </property>
+        <!--The sort filters for the discovery search-->
+        <property name="searchSortConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoverySortConfiguration">
+                <!--<property name="defaultSort" ref="sortDateIssued"/>-->
+                <!--DefaultSortOrder can either be desc or asc (desc is default)-->
+                <property name="defaultSortOrder" value="desc"/>
+                <property name="sortFields">
+                    <list>
+                        <ref bean="sortTitle" />
+                        <ref bean="sortDateIssued" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <!--Any default filter queries, these filter queries will be used for all queries done by discovery for this configuration-->
+        <!--<property name="defaultFilterQueries">-->
+            <!--<list>-->
+                <!--Only find items-->
+                <!--<value>search.resourcetype:2</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--The configuration for the recent submissions-->
+        <property name="recentSubmissionConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryRecentSubmissionsConfiguration">
+                <property name="metadataSortField" value="dc.date.accessioned" />
+                <property name="type" value="date"/>
+                <property name="max" value="20"/>
+                <!-- If enabled the collection home page will not display metadata but show a pageable list of recent submissions -->
+                <property name="useAsHomePage" value="false"/>
+            </bean>
+        </property>
+        <!--Default result per page  -->
+        <property name="defaultRpp" value="10" />
+        <property name="hitHighlightingConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightingConfiguration">
+                <property name="metadataFields">
+                    <list>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.title"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.contributor.author"/>
+                            <property name="snippets" value="5"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="dc.description.abstract"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                        <bean class="org.dspace.discovery.configuration.DiscoveryHitHighlightFieldConfiguration">
+                            <property name="field" value="fulltext"/>
+                            <property name="maxSize" value="250"/>
+                            <property name="snippets" value="2"/>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="moreLikeThisConfiguration">
+            <bean class="org.dspace.discovery.configuration.DiscoveryMoreLikeThisConfiguration">
+                <!--When altering this list also alter the "xmlui.Discovery.RelatedItems.help" key as it describes
+                the metadata fields below-->
+                <property name="similarityMetadataFields">
+                    <list>
+                        <value>dc.title</value>
+                        <value>dc.contributor.author</value>
+                        <value>dc.creator</value>
+                        <value>dc.subject</value>
+                    </list>
+                </property>
+                <!--The minimum number of matching terms across the metadata fields above before an item is found as related -->
+                <property name="minTermFrequency" value="5"/>
+                <!--The maximum number of related items displayed-->
+                <property name="max" value="3"/>
+                <!--The minimum word length below which words will be ignored-->
+                <property name="minWordLength" value="5"/>
+            </bean>
+        </property>
+        <!-- When true a "did you mean" example will be displayed, value can be true or false -->
+        <property name="spellCheckEnabled" value="true"/>
+    </bean>
+	
+	
+	
+	
+	<bean id="searchPesaAssJuridicaTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaTitle"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.title</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaAuthor"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.author</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaDateIssued" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaDateIssued"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.issued</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaDateCreated" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaDateCreated"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.date.created</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaAssJuridicaContributorOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaContributorOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.other</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaAssJuridicaDescriptionAbstract" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaDescriptionAbstract"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.abstract</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaAssJuridicaDescription" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaDescription"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaDescriptionTableOfContents" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaDescriptionTableOfContents"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.description.tableofcontents</value>
+            </list>
+        </property>
+    </bean>
+	<bean id="searchPesaAssJuridicaSubject" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaSubject"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="searchPesaAssJuridicaIdentifierCitation" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaIdentifierCitation"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaIdentifierOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaIdentifierOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.citation</value>
+            </list>
+        </property>
+    </bean>
+	
+	
+	
+	<bean id="searchPesaAssJuridicaRelationIsVersionOf" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaRelationIsVersionOf"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.isversionof</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaPublisher" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaPublisher"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.publisher</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaRelationIsPartOfSeries" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaRelationIsPartOfSeries"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.ispartofseries</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaType" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaType"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.type</value>
+            </list>
+        </property>
+    </bean>	
+	
+	<bean id="searchPesaAssJuridicaRelationHasVersion" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaRelationHasVersion"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversion</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaRelationHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaRelationHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
+	<bean id="searchPesaAssJuridicaIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAssJuridicaIdentifierUri"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<!--FINAL PESQUISA AVANCADA ASSJURIDICA-->
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--FINAL PESQUISA AVANCADA-->
+	
+	
+	
 
     <!--Search filter configuration beans-->
     <bean id="searchFilterTitle" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
@@ -1154,8 +2468,6 @@
         <property name="facetLimit" value="10"/>
         <property name="sortOrder" value="COUNT"/>
     </bean>
-	
-	
 
     <bean id="searchFilterSubject" class="org.dspace.discovery.configuration.HierarchicalSidebarFacetConfiguration">
         <property name="indexFieldName" value="subject"/>
