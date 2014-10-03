@@ -273,6 +273,9 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, 
         String query = queryArgs.getQuery();
         request.setAttribute("query", query);
         request.setAttribute("queryArgs", queryArgs);
+        if((String) request.getParameter("pesquisa") != null && !((String) request.getParameter("pesquisa")).equals("")) {
+        	request.setAttribute("pesquisa",(String) request.getParameter("pesquisa")); 
+        }
         adicionarParametroAvailableFiltersNaRequest(request,
 				discoveryConfiguration);
 

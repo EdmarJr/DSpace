@@ -80,6 +80,7 @@
     boolean error = (error_b == null ? false : error_b.booleanValue());
     
     DiscoverQuery qArgs = (DiscoverQuery) request.getAttribute("queryArgs");
+    String pesquisaAvancada = (String)request.getAttribute("pesquisa");
     String sortedBy = qArgs.getSortField();
     String order = qArgs.getSortOrder().toString();
     String ascSelected = (SortOption.ASCENDING.equalsIgnoreCase(order)   ? "selected=\"selected\"" : "");
@@ -289,6 +290,7 @@
         <input type="hidden" value="<%= rpp %>" name="rpp" />
         <input type="hidden" value="<%= sortedBy %>" name="sort_by" />
         <input type="hidden" value="<%= order %>" name="order" />
+        <input type="hidden" value="<%= pesquisaAvancada %>" name="pesquisa" />
 		<input class="btn btn-default" type="submit" value="<fmt:message key="jsp.search.filter.add"/>" />
 		</form>
 		</div>        

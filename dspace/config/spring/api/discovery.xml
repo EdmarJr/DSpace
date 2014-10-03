@@ -2031,6 +2031,7 @@
 				<ref bean="searchPesaAssJuridicaDescriptionAbstract" />
 				<ref bean="searchPesaAssJuridicaDescription" />		
 				<ref bean="searchPesaAssJuridicaSubject" />
+				<ref bean="searchPesaAssJuridicaIdentifierCitation" />
 				<ref bean="searchPesaAssJuridicaType" />
 				<ref bean="searchPesaAssJuridicaIdentifierUri" />
             </list>
