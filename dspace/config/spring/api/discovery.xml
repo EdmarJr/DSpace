@@ -47,7 +47,22 @@
                <entry key="site" value-ref="homepageConfiguration" />
                <entry key="123456789/1" value-ref="atosConfiguracao"/>
 			   <entry key="123456789/2" value-ref="doutrinaConfiguracaoPai"/>
+			   <entry key="123456789/8" value-ref="doutrinaConfiguracaoFilhoExcecoes"/>
+			   <entry key="123456789/9" value-ref="doutrinaConfiguracaoFilhoExcecoes"/>
+			   <entry key="123456789/10" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/11" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/12" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/13" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/14" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/15" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/16" value-ref="doutrinaConfiguracaoFilho"/>
+			   <entry key="123456789/17" value-ref="doutrinaConfiguracaoFilho"/>
 			   <entry key="123456789/3" value-ref="repositorioInstitucionalConfiguracao1"/>
+			   <entry key="123456789/18" value-ref="repositorioInstitucionalConfiguracao1"/>
+			   <entry key="123456789/19" value-ref="repositorioInstitucionalConfiguracao1"/>
+			   <entry key="123456789/20" value-ref="repositorioInstitucionalConfiguracao1"/>
+			   <entry key="123456789/21" value-ref="repositorioInstitucionalConfiguracao2"/>
+			   <entry key="123456789/22" value-ref="repositorioInstitucionalConfiguracao3"/>
 			   <entry key="123456789/1avancada" value-ref="pesaAtos"/>
 			   <entry key="123456789/4avancada" value-ref="pesaAtos"/>
 			   <entry key="123456789/5avancada" value-ref="pesaAtos"/>
