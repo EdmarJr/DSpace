@@ -24,13 +24,13 @@
 ##### Basic information ######
 
 # DSpace installation directory
-dspace.dir = C:/DSpace
+dspace.dir = /usr/DSpaceInstalacao-03-10
 
 # DSpace host name - should match base URL.  Do not include port number.
-dspace.hostname = ${dspace.hostname}
+dspace.hostname = testedspace
 
 # DSpace base host URL.  Include port number etc.
-dspace.baseUrl = ${dspace.baseUrl}
+dspace.baseUrl = http://testedspace.stj.jus.br
 
 # DSpace base URL.  Include port number etc., but NOT trailing slash
 # Change to xmlui if you wish to use the xmlui as the default, or remove
@@ -95,7 +95,7 @@ db.poolname = ${db.poolname}
 ##### Email settings ######
 
 # SMTP mail server
-mail.server = 10.20.0.75
+mail.server = smtpapp.stj.gov.br
 
 # SMTP mail server authentication username and password (if required)
 mail.server.username = 
@@ -105,7 +105,7 @@ mail.server.password =
 mail.server.port = 25
 
 # From address for mail
-mail.from.address = edmar.junior@ctis.com.br
+mail.from.address = bdjur@stj.jus.br
 
 # Name of a pre-configured Session object to be fetched from a directory.
 # This overrides the Session settings above.  If none can be found, then DSpace
@@ -113,16 +113,16 @@ mail.from.address = edmar.junior@ctis.com.br
 #mail.session.name = Session
 
 # Currently limited to one recipient!
-feedback.recipient = ${mail.feedback.recipient}
+feedback.recipient = bdjur@stj.jus.br
 
 # General site administration (Webmaster) e-mail
-mail.admin = edmar.junior@ctis.com.br
+mail.admin = jbarreto@stj.jus.br
 
 # Recipient for server errors and alerts
-alert.recipient = edmar.junior@ctis.com.br
+alert.recipient = jbarreto@stj.jus.br
 
 # Recipient for new user registration emails
-registration.notify = edmar.junior@ctis.com.br
+registration.notify = jbarreto@stj.jus.br
 
 # Set the default mail character set. This may be overridden by providing a line
 # inside the email template "charset: <encoding>", otherwise this default is used.
@@ -272,9 +272,9 @@ search.max-clauses = 2048
 # search.analyzer = org.dspace.search.DSNonStemmingAnalyzer
 
 # Chinese analyzer
-# search.analyzer = org.apache.lucene.analysis.cn.ChineseAnalyzer
+search.analyzer = org.apache.lucene.analysis.pt.PortugueseAnalyzer
 
-search.analyzer = org.dspace.search.DSAnalyzer
+#search.analyzer = org.dspace.search.DSAnalyzer
 
 # Boolean search operator to use, current supported values are OR and AND
 # If this config item is missing or commented out, OR is used
@@ -1382,6 +1382,7 @@ plugin.named.org.dspace.app.webui.json.JSONRequest = \
 # Default Locale
 # A Locale in the form country or country_language or country_language_variant
 # if no default locale is defined the server default locale will be used.
+# default.locale = en
 default.locale = pt_BR
 
 # All the Locales, that are supported by this instance of DSpace

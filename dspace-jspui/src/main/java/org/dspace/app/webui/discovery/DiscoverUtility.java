@@ -51,6 +51,7 @@ public class DiscoverUtility
             HttpServletRequest request) throws IllegalStateException,
             SQLException
     {
+    	
         // Get the location parameter, if any
         String location = request.getParameter("location");
         if (location == null)

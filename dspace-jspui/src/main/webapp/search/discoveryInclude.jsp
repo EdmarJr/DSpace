@@ -193,6 +193,8 @@ if(scopes != null) {
                                	int iTemp = 1;
                                 for (DiscoverySearchFilter searchFilterTemp : availableFilters) { 
                                 	String codigoMsgTemp = "jsp.pesquisa.byedmar." + searchFilterTemp.getIndexFieldName();
+                                	
+                                	
                                 %>
                                
                                	<div class="col-lg-3">
@@ -206,12 +208,48 @@ if(scopes != null) {
 									<option value="contains" selected="selected"><fmt:message
 											key="jsp.search.filter.op.contains" /></option>
 								</select>
-								<div class="col-lg-9">
-									<input class="form-control" type="text" id="filter_value_<%=iTemp%>"
-										name="filter_value_<%=iTemp%>" value="">
+								<% 
+                                		if(searchFilterTemp.getMetadataFields().get(0).equals("dc.type")) {
+                                		%>
+                                		<div class="col-lg-9">
+									
+										<select id="filter_value_<%=iTemp%>" name="filter_value_<%=iTemp%>" class="form-control" value="">
+										
+											<option value="Artigo de jornal" label="Artigo de jornal"/>
+											<option value="Artigo de revista" label="Artigo de revista"/>
+											<option value="Capítulo de livro" label="Capítulo de livro"/>
+											<option value="Discurso" label="Discurso"/>
+											<option value="Dissertação" label="Dissertação"/>
+											<option value="Entrevista" label="Entrevista"/>
+											<option value="Livro" label="Livro"/>
+											<option value="Palestra" label="Palestra"/>
+											<option value="Prefácio" label="Prefácio"/>
+											<option value="Preprint" label="Preprint"/>
+											<option value="Sumário de livro" label="Sumário de livro"/>
+											<option value="TCC/Especialização" label="TCC/Especialização"/>
+											<option value="Tese" label="Tese"/>
+											<option value="Outros" label="Outros"/>
+											
+											
+											
+										
+								</option></select>
 								</div>
+                                		
+                                		
+                                		<%
+                                		
+                                		} else {
+                                			%>
+                                	<div class="col-lg-9">
+											<input class="form-control" type="text" id="filter_value_<%=iTemp%>"
+												name="filter_value_<%=iTemp%>" value="">
+										</div>
+								
                               		
                                <%
+                                		}
+                                		
                                iTemp++;
                                 }%>
                                 
@@ -336,165 +374,11 @@ else if( qResults != null)
 
 %>
 <hr/>
-<div class="discovery-result-pagination row container">
-<%
-	long lastHint = qResults.getStart()+qResults.getMaxResults() <= qResults.getTotalSearchResults()?
-	        qResults.getStart()+qResults.getMaxResults():qResults.getTotalSearchResults();
-%>
-    <%-- <p align="center">Results <//%=qResults.getStart()+1%>-<//%=qResults.getStart()+qResults.getHitHandles().size()%> of --%>
-	<div class="alert alert-info"><fmt:message key="jsp.search.results.results">
-        <fmt:param><%=qResults.getStart()+1%></fmt:param>
-        <fmt:param><%=lastHint%></fmt:param>
-        <fmt:param><%=qResults.getTotalSearchResults()%></fmt:param>
-        <fmt:param><%=(float) qResults.getSearchTime() / 1000%></fmt:param>
-    </fmt:message></div>
-    <ul class="pagination pull-right">
-	<%
-	if (pageFirst != pageCurrent)
-	{
-	    %><li><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></li><%
-	}
-	else
-	{
-	    %><li class="disabled"><span><fmt:message key="jsp.search.general.previous" /></span></li><%
-	}
-	
-	if (pageFirst != 1)
-	{
-	    %><li><a href="<%= firstURL %>">1</a></li><li>...</li><%
-	}
-	
-	for( long q = pageFirst; q <= pageLast; q++ )
-	{
-	    String myLink = "<li><a href=\""
-	                    + baseURL;
-	
-	
-	    if( q == pageCurrent )
-	    {
-	        myLink = "<li class=\"active\"><span>" + q + "</span></li>";
-	    }
-	    else
-	    {
-	        myLink = myLink
-	            + (q-1) * qResults.getMaxResults()
-	            + "\">"
-	            + q
-	            + "</a></li>";
-	    }
-	%>
-	
-	<%= myLink %>
 
-	<%
-	}
-	
-	if (pageTotal > pageLast)
-	{
-	    %><li class="disabled"><span>...</span></li><li><a href="<%= lastURL %>"><%= pageTotal %></a></li><%
-	}
-	if (pageTotal > pageCurrent)
-	{
-	    %><li><a href="<%= nextURL %>"><fmt:message key="jsp.search.general.next" /></a></li><%
-	}
-	else
-	{
-	    %><li class="disabled"><span><fmt:message key="jsp.search.general.next" /></span></li><%
-	}
-	%>
-	</ul>
-<!-- give a content to the div -->
-</div>
-<div class="discovery-result-results">
-<% if (communities.length > 0 ) { %>
-    <div class="panel panel-info">
-    <div class="panel-heading"><fmt:message key="jsp.search.results.comhits"/></div>
-    <dspace:communitylist  communities="<%= communities %>" />
-    </div>
-<% } %>
-
-<% if (collections != null && collections.length > 0 ) { %>
-    <div class="panel panel-info">
-    <div class="panel-heading"><fmt:message key="jsp.search.results.colhits"/></div>
-    <dspace:collectionlist collections="<%= collections %>" />
-    </div>
-<% } %>
-
-<% if (items.length > 0) { %>
-    <div class="panel panel-info">
-    <div class="panel-heading"><fmt:message key="jsp.search.results.itemhits"/></div>
-    <dspace:itemlist items="<%= items %>" authorLimit="<%= etAl %>" />
-    </div>
-<% } %>
-</div>
 <%-- if the result page is enought long... --%>
 <% if ((communities.length + collections.length + items.length) > 10) {%>
 <%-- show again the navigation info/links --%>
-<div class="discovery-result-pagination row container">
-    <%-- <p align="center">Results <//%=qResults.getStart()+1%>-<//%=qResults.getStart()+qResults.getHitHandles().size()%> of --%>
-	<div class="alert alert-info"><fmt:message key="jsp.search.results.results">
-        <fmt:param><%=qResults.getStart()+1%></fmt:param>
-        <fmt:param><%=lastHint%></fmt:param>
-        <fmt:param><%=qResults.getTotalSearchResults()%></fmt:param>
-        <fmt:param><%=(float) qResults.getSearchTime() / 1000 %></fmt:param>
-    </fmt:message></div>
-    <ul class="pagination pull-right">
-<%
-if (pageFirst != pageCurrent)
-{
-    %><li><a href="<%= prevURL %>"><fmt:message key="jsp.search.general.previous" /></a></li><%
-}
-else
-{
-    %><li class="disabled"><span><fmt:message key="jsp.search.general.previous" /></span></li><%
-}    
 
-if (pageFirst != 1)
-{
-    %><li><a href="<%= firstURL %>">1</a></li><li class="disabled"><span>...<span></li><%
-}
-
-for( long q = pageFirst; q <= pageLast; q++ )
-{
-    String myLink = "<li><a href=\""
-                    + baseURL;
-
-
-    if( q == pageCurrent )
-    {
-        myLink = "<li class=\"active\"><span>" + q + "</span></li>";
-    }
-    else
-    {
-        myLink = myLink
-            + (q-1) * qResults.getMaxResults()
-            + "\">"
-            + q
-            + "</a></li>";
-    }
-%>
-
-<%= myLink %>
-
-<%
-}
-
-if (pageTotal > pageLast)
-{
-    %><li class="disabled"><span>...</span></li><li><a href="<%= lastURL %>"><%= pageTotal %></a></li><%
-}
-if (pageTotal > pageCurrent)
-{
-    %><li><a href="<%= nextURL %>"><fmt:message key="jsp.search.general.next" /></a></li><%
-}
-else
-{
-    %><li class="disabled"><span><fmt:message key="jsp.search.general.next" /></span></li><%
-}
-%>
-</ul>
-<!-- give a content to the div -->
-</div>
 <% } %>
 <% } %>
 <dspace:sidebar>
