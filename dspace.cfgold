@@ -27,10 +27,10 @@
 dspace.dir = /usr/DSpaceInstalacao-03-10
 
 # DSpace host name - should match base URL.  Do not include port number.
-dspace.hostname = testedspace
+dspace.hostname = ${dspace.hostname}
 
 # DSpace base host URL.  Include port number etc.
-dspace.baseUrl = http://testedspace.stj.jus.br
+dspace.baseUrl = ${dspace.baseUrl}
 
 # DSpace base URL.  Include port number etc., but NOT trailing slash
 # Change to xmlui if you wish to use the xmlui as the default, or remove
