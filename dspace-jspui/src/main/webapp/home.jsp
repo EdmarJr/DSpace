@@ -36,6 +36,7 @@
 <%@ page import="org.dspace.browse.ItemCounter" %>
 <%@ page import="org.dspace.content.DCValue" %>
 <%@ page import="org.dspace.content.Item" %>
+<%@ page import="org.apache.commons.lang.StringUtils"%>
 
 <%
     Community[] communities = (Community[]) request.getAttribute("communities");
@@ -79,16 +80,62 @@ for (int i = supportedLocales.length-1; i >= 0; i--)
 }
 }
 %>
-	<div class="jumbotron">
-       <%= topNews %>
-	</div>
-
-<div class="row">
 <%
-if (submissions != null && submissions.count() > 0)
+if (communities != null && communities.length != 0)
 {
 %>
-        <div class="col-md-8">
+	<div class="col-md-4">		
+               <h3><fmt:message key="jsp.home.com1"/></h3>
+                <p><fmt:message key="jsp.home.com2"/></p>
+				<div class="list-group">
+<%
+	boolean showLogos = ConfigurationManager.getBooleanProperty("jspui.home-page.logos", true);
+    for (int i = 0; i < communities.length; i++)
+    {
+%><div class="list-group-item row">
+<%  
+		Bitstream logo = communities[i].getLogo();
+		if (showLogos && logo != null) { %>
+	<div class="col-md-3">
+        <img alt="Logo" class="img-responsive" src="<%= request.getContextPath() %>/retrieve/<%= logo.getID() %>" /> 
+	</div>
+	<div class="col-md-9">
+<% } else { %>
+	<div class="col-md-12">
+<% }  %>		
+		<h4 class="list-group-item-heading"><a href="<%= request.getContextPath() %>/handle/<%= communities[i].getHandle() %>"><%= communities[i].getMetadata("name") %></a>
+<%
+        if (ConfigurationManager.getBooleanProperty("webui.strengths.show"))
+        {
+%>
+		<span class="badge pull-right"><%= ic.getCount(communities[i]) %></span>
+<%
+        }
+
+%>
+		</h4>
+		<p><%= communities[i].getMetadata("short_description") %></p>
+    </div>
+</div>                            
+<%
+    }
+%>
+	</div>
+	</div>
+<%
+}
+%>
+	<%
+    	int discovery_panel_cols = 8;
+    	int discovery_facet_cols = 4;
+    %>
+		
+<div class="col-md-8">
+<%
+if (submissions != null && submissions.count() > 0)
+{	
+%>
+        <div class="col-md-12">
         <div class="panel panel-primary">        
         <div id="recent-submissions-carousel" class="panel-heading carousel slide">
           <h3><fmt:message key="jsp.collection-home.recentsub"/>
@@ -174,60 +221,14 @@ if (submissions != null && submissions.count() > 0)
 <%
 }
 %>
+
 <div class="col-md-4">
     <%= sideNews %>
 </div>
 </div>
 <div class="container row">
-<%
-if (communities != null && communities.length != 0)
-{
-%>
-	<div class="col-md-4">		
-               <h3><fmt:message key="jsp.home.com1"/></h3>
-                <p><fmt:message key="jsp.home.com2"/></p>
-				<div class="list-group">
-<%
-	boolean showLogos = ConfigurationManager.getBooleanProperty("jspui.home-page.logos", true);
-    for (int i = 0; i < communities.length; i++)
-    {
-%><div class="list-group-item row">
-<%  
-		Bitstream logo = communities[i].getLogo();
-		if (showLogos && logo != null) { %>
-	<div class="col-md-3">
-        <img alt="Logo" class="img-responsive" src="<%= request.getContextPath() %>/retrieve/<%= logo.getID() %>" /> 
-	</div>
-	<div class="col-md-9">
-<% } else { %>
-	<div class="col-md-12">
-<% }  %>		
-		<h4 class="list-group-item-heading"><a href="<%= request.getContextPath() %>/handle/<%= communities[i].getHandle() %>"><%= communities[i].getMetadata("name") %></a>
-<%
-        if (ConfigurationManager.getBooleanProperty("webui.strengths.show"))
-        {
-%>
-		<span class="badge pull-right"><%= ic.getCount(communities[i]) %></span>
-<%
-        }
-
-%>
-		</h4>
-		<p><%= communities[i].getMetadata("short_description") %></p>
-    </div>
-</div>                            
-<%
-    }
-%>
-	</div>
-	</div>
-<%
-}
-%>
-	<%
-    	int discovery_panel_cols = 8;
-    	int discovery_facet_cols = 4;
-    %>
-	<%@ include file="discovery/static-sidebar-facet.jsp" %>
+<div class="jumbotron">
+	       <%= topNews %>
+		</div>
 </div>
 </dspace:layout>
