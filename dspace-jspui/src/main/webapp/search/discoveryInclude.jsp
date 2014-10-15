@@ -256,8 +256,7 @@ if(scopes != null) {
                             
                                 <div class="col-lg-3"><label class="control-label" for="query"><fmt:message key="jsp.pesquisa.byedmar.pesquisa.geral"/></label></div>
                                 <div class="col-lg-9"><input class="form-control" type="text" size="50" id="query" name="query" value="<%= (query==null ? "" : StringEscapeUtils.escapeHtml(query)) %>"/></div>
-                                <br/>
-                                <input type="submit" id="main-query-submit" class="btn btn-primary" value="<fmt:message key="jsp.general.go"/>" />
+                                <input style="float : right;margin-top:20px;" type="submit" id="main-query-submit" class="btn btn-primary" value="<fmt:message key="jsp.general.go"/>" />
 <% if (StringUtils.isNotBlank(spellCheckQuery)) {%>
 	<p class="lead"><fmt:message key="jsp.search.didyoumean"><fmt:param><a id="spellCheckQuery" data-spell="<%= StringEscapeUtils.escapeHtml(spellCheckQuery) %>" href="#"><%= spellCheckQuery %></a></fmt:param></fmt:message></p>
 <% } %>                  
@@ -311,7 +310,7 @@ if(scopes != null) {
 		%>
 		</div>
 <% } %>
-<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
+<a class="btn btn-default" style="margin-top:20px;" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
 		</form>
 		</div>
 

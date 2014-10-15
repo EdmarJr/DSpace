@@ -69,10 +69,10 @@ public class FeedbackServlet extends DSpaceServlet
             basicHost = host.substring(host.substring(0, lastDot).lastIndexOf("."));
         }
 
-        if (fromPage == null || fromPage.indexOf(basicHost) == -1)
-        {
-            throw new AuthorizeException();
-        }
+//        if (fromPage == null || fromPage.indexOf(basicHost) == -1)
+//        {
+//            throw new AuthorizeException();
+//        }
 
         // The email address they provided
         String formEmail = obterEmailNosParametros(request);
