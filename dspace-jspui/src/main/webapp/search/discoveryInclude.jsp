@@ -310,7 +310,9 @@ if(scopes != null) {
 		%>
 		</div>
 <% } %>
-<a class="btn btn-default" style="margin-top:20px;" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>	
+<a class="btn btn-default" style="margin-top:20px;" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>
+<a style="position: absolute;padding-top: 25px;padding-left: 25px;" href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/79183/dicas_pesquisa_atos.pdf">Dicas de pesquisa</a>	
+
 		</form>
 		</div>
 
