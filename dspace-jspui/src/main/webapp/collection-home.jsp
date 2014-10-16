@@ -116,7 +116,7 @@
             }
 %>
 		<small><fmt:message key="jsp.collection-home.heading1"/></small>
-      <a class="statisticsLink btn btn-info" href="<%= request.getContextPath() %>/handle/<%= collection.getHandle() %>/statistics"><fmt:message key="jsp.collection-home.display-statistics"/></a>
+      
       </h2></div>
 <%  if (logo != null) { %>
         <div class="col-md-4">
@@ -152,31 +152,7 @@
     if(feedEnabled)
     { %>
     <span class="pull-right">
-    <%
-    	String[] fmts = feedData.substring(5).split(",");
-    	String icon = null;
-    	int width = 0;
-    	for (int j = 0; j < fmts.length; j++)
-    	{
-    		if ("rss_1.0".equals(fmts[j]))
-    		{
-    		   icon = "rss1.gif";
-    		   width = 80;
-    		}
-    		else if ("rss_2.0".equals(fmts[j]))
-    		{
-    		   icon = "rss2.gif";
-    		   width = 80;
-    		}
-    		else
-    	    {
-    	       icon = "rss.gif";
-    	       width = 36;
-    	    }
-%>
-    <a href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/<%= collection.getHandle() %>"><img src="<%= request.getContextPath() %>/image/<%= icon %>" alt="RSS Feed" width="<%= width %>" height="15" vspace="3" border="0" /></a>
-<%
-    	} %>
+    
     	</span><%
     }
 %>
@@ -369,7 +345,40 @@
     %>
     <%@ include file="discovery/static-sidebar-facet.jsp" %>
     <% Collection[] collections = {}; %> </div>
-    <div class="col-md-9"><%@ include file="search/discoveryInclude.jsp" %></div>
+    <div class="col-md-9"><%@ include file="search/discoveryInclude.jsp" %>
+    <%
+    	String[] fmts = feedData.substring(5).split(",");
+    	String icon = null;
+    	int width = 0;
+    	for (int j = 0; j < fmts.length; j++)
+    	{
+    		if ("rss_1.0".equals(fmts[j]))
+    		{
+    		   icon = "rss1.gif";
+    		   width = 80;
+    		   continue;
+    		}
+    		else if ("rss_2.0".equals(fmts[j]))
+    		{
+    		   icon = "rss2.gif";
+    		   width = 80;
+    		   continue;
+    		}
+    		else
+    	    {
+    	       icon = "rss.gif";
+    	       width = 36;
+    	    }
+%>
+    <a style="margin-bottom:30px" class="btn btn-default" href="<%= request.getContextPath() %>/feed/<%= fmts[j] %>/<%= collection.getHandle() %>">Últimos publicados</a>
+<%
+    	} %>
+    
+    
+    <a style="margin-bottom:30px" class="statisticsLink btn btn-default" href="<%= request.getContextPath() %>/handle/<%= collection.getHandle() %>/statistics"><fmt:message key="jsp.collection-home.display-statistics"/></a>
+    </div>
+    
+    
     <div class="col-md-9">
   <%-- Browse --%>
   <div class="panel panel-primary">

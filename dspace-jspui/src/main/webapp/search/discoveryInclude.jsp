@@ -336,8 +336,8 @@ if( error )
 else if( qResults != null && qResults.getTotalSearchResults() == 0 )
 {
  %>
-    <%-- <p align="center">Search produced no results.</p> --%>
-    <p align="center"><fmt:message key="jsp.search.general.noresults"/></p>
+    <%-- <p align="center">Search produced no results.</p> 
+    <%--<p align="center"><fmt:message key="jsp.search.general.noresults"/></p>--%>
 <%
 }
 else if( qResults != null)
