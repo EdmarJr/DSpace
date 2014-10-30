@@ -84,8 +84,8 @@
 			   <entry key="123456789/18avancada" value-ref="pesaRepositorio"/>
 			   <entry key="123456789/19avancada" value-ref="pesaRepositorio"/>
 			   <entry key="123456789/20avancada" value-ref="pesaRepositorio"/>
-			   <entry key="123456789/21avancada" value-ref="pesaGaleria"/>
-			   <entry key="123456789/22avancada" value-ref="pesaAssJuridica"/>
+			   <entry key="123456789/21avancada" value-ref="pesaRepositorio"/>
+			   <entry key="123456789/22avancada" value-ref="pesaRepositorio"/>
             </map>
         </property>
         <property name="toIgnoreMetadataFields">
@@ -351,7 +351,7 @@
 			<ref bean="searchFilterAuthorNew" />
 			<ref bean="searchFilterYear" />
 			<ref bean="searchFilterSubjectDoutrina" />
-			<ref bean="searchFilterTypeDocument" />
+			<ref bean="searchFilterType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1040,13 +1040,17 @@
 				<ref bean="searchPesaAtosTitle" />
 				<ref bean="searchPesaAtosAuthor" />
 				<ref bean="searchPesaAtosDateIssued" />
+				<ref bean="searchPesaAssJuridicaDateCreated" />
 				<ref bean="searchPesaAtosDescriptionAbstract" />
+				<ref bean="searchPesaAtosSubjectSubjectOther" />
 				<ref bean="searchPesaAtosDescription" />
 				<ref bean="searchPesaAtosIdentifierCitation" />
 				<ref bean="searchPesaAtosRelationIsVersionOf" />
-				<ref bean="searchPesaAtosRelationHasVersion" />
-				<ref bean="searchPesaAtosRelationHasVersionLink" />
-				<ref bean="searchPesaAtosIdentifierUri" />
+				<ref bean="searchPesaAtosRelationHasVersionHasVersionLink" />
+				<ref bean="searchFilterType" />
+				<ref bean="searchFilterNumber" />
+				<ref bean="searchPesaAtosContributorOther" />
+				
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1144,6 +1148,15 @@
         </property>
     </bean>
 	
+	<bean id="searchPesaAtosContributorOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosContributorOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.contributor.other</value>
+            </list>
+        </property>
+    </bean>
+	
 	<bean id="searchPesaAtosAuthor" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
         <property name="indexFieldName" value="pesaAtosAuthor"/>
         <property name="metadataFields">
@@ -1216,11 +1229,30 @@
         </property>
     </bean>
 	
+	<bean id="searchPesaAtosRelationHasVersionHasVersionLink" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosRelationHasVersionHasVersionLink"/>
+        <property name="metadataFields">
+            <list>
+				<value>dc.relation.hasversion</value>
+                <value>dc.relation.hasversionlink</value>
+            </list>
+        </property>
+    </bean>
+	
 	<bean id="searchPesaAtosIdentifierUri" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
         <property name="indexFieldName" value="pesaAtosIdentifierUri"/>
         <property name="metadataFields">
             <list>
                 <value>dc.identifier.uri</value>
+            </list>
+        </property>
+    </bean>
+	<bean id="searchPesaAtosSubjectSubjectOther" class="org.dspace.discovery.configuration.DiscoverySearchFilter">
+        <property name="indexFieldName" value="pesaAtosSubjectSubjectOther"/>
+        <property name="metadataFields">
+            <list>
+                <value>dc.subject</value>
+				<value>dc.subject.other</value>
             </list>
         </property>
     </bean>
@@ -1244,15 +1276,13 @@
 				<ref bean="searchPesaDoutrinaAuthor" />
 				<ref bean="searchPesaDoutrinaDateIssued" />
 				<ref bean="searchPesaDoutrinaDescriptionAbstract" />
+				<ref bean="searchPesaAtosSubjectSubjectOther" />
 				<ref bean="searchPesaDoutrinaDescription" />
 				<ref bean="searchPesaDoutrinaDescriptionTableOfContents" />
-				<ref bean="searchPesaDoutrinaSubject" />				
-				<ref bean="searchPesaDoutrinaRelationIsVersionOf" />
 				<ref bean="searchPesaDoutrinaPublisher" />
+				<ref bean="searchPesaDoutrinaRelationIsVersionOf" />
 				<ref bean="searchPesaDoutrinaRelationIsPartOfSeries" />
-				<ref bean="searchPesaDoutrinaIdentifierCitation" />
-				<ref bean="searchPesaDoutrinaType" />
-				<ref bean="searchPesaDoutrinaIdentifierUri" />
+				<ref bean="searchFilterTypeDocument" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1346,6 +1376,7 @@
         <property name="metadataFields">
             <list>
                 <value>dc.title</value>
+				<value>dc.title.alternative</value>
             </list>
         </property>
     </bean>
@@ -1499,16 +1530,17 @@
             <list>
 				<ref bean="searchPesaRepositorioTitle" />
 				<ref bean="searchPesaRepositorioAuthor" />
+				<ref bean="searchPesaAtosContributorOther" />
 				<ref bean="searchPesaRepositorioDateIssued" />
-				<ref bean="searchPesaRepositorioContributorOther" />
+				<ref bean="searchPesaAssJuridicaDateCreated" />
 				<ref bean="searchPesaRepositorioDescriptionAbstract" />
+				<ref bean="searchPesaAtosSubjectSubjectOther" />
 				<ref bean="searchPesaRepositorioDescription" />
-				<ref bean="searchPesaRepositorioSubject" />				
-				<ref bean="searchPesaRepositorioRelationIsVersionOf" />
+				<ref bean="searchPesaRepositorioDescriptionTableOfContents" />
 				<ref bean="searchPesaRepositorioPublisher" />
-				<ref bean="searchPesaRepositorioIdentifierCitation" />
+				<ref bean="searchPesaRepositorioRelationIsVersionOf" />
+				<ref bean="searchPesaRepositorioRelationIsPartOfSeries" />
 				<ref bean="searchPesaRepositorioType" />
-				<ref bean="searchPesaRepositorioIdentifierUri" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -1602,6 +1634,7 @@
         <property name="metadataFields">
             <list>
                 <value>dc.title</value>
+				<value>dc.title.alternative</value>
             </list>
         </property>
     </bean>

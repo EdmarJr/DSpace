@@ -83,6 +83,7 @@
        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
          <ul class="nav navbar-nav">
            <li class="<%= currentPage.endsWith("/home.jsp")? "active" : "" %>"><a href="<%= request.getContextPath() %>/"><span class="glyphicon glyphicon-home"></span> <fmt:message key="jsp.layout.navbar-default.home"/></a></li>
+          
                 
            <li class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.browse"/> <b class="caret"></b></a>
@@ -107,7 +108,8 @@
 
             </ul>
           </li>
-          
+          <li><a href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/52495/FAQ_BDJur.pdf"><span class="glyphicon"></span>Perguntas frequentes</a></li>
+          <li class="<%= currentPage.endsWith("/feedback")? "active" : "" %>"><a href="<%= request.getContextPath() %>/feedback"><span class="glyphicon"></span>Avalie a BDJur</a></li>
        </ul>
        <div class="nav navbar-nav navbar-right">
 		<ul class="nav navbar-nav navbar-right">

@@ -102,9 +102,15 @@ if (communities != null && communities.length != 0)
 	<div class="col-md-9">
 <% } else { %>
 	<div class="col-md-12">
-<% }  %>		
+<% }  if(communities[i].getHandle().equals("123456789/25")) {
+	%>	
+	<h4 class="list-group-item-heading"><a href="<%= request.getContextPath() %>/simple-search"><%= communities[i].getMetadata("name") %></a>
+	<%
+} else {
+%>		
 		<h4 class="list-group-item-heading"><a href="<%= request.getContextPath() %>/handle/<%= communities[i].getHandle() %>"><%= communities[i].getMetadata("name") %></a>
 <%
+}
         if (ConfigurationManager.getBooleanProperty("webui.strengths.show"))
         {
 %>
@@ -130,7 +136,7 @@ if (communities != null && communities.length != 0)
     	int discovery_facet_cols = 4;
     %>
 		
-<div class="col-md-8" style="min-height: 340px; min-width: 100px;">
+<div class="col-md-8" style="min-height: 440px; min-width: 100px;">
 	<div class="col-md-12">
 	    <%= sideNews %>
 	</div>

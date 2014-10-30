@@ -33,6 +33,7 @@
   -   admin_button     - If the user is an admin
   --%>
 
+<%@page import="org.dspace.utils.EdmarUtils"%>
 <%@page import="org.dspace.discovery.configuration.DiscoverySearchFilterFacet"%>
 <%@page import="org.dspace.app.webui.util.UIUtil"%>
 <%@page import="java.util.HashMap"%>
@@ -209,7 +210,7 @@ if(scopes != null) {
 											key="jsp.search.filter.op.contains" /></option>
 								</select>
 								<% 
-                                		if(searchFilterTemp.getMetadataFields().get(0).equals("dc.type")) {
+                                		if(searchFilterTemp.getMetadataFields().get(0).equals("dc.type") || searchFilterTemp.getMetadataFields().get(0).equals("dc.relation.uri") ) {
                                 		%>
                                 		<div class="col-lg-9">
 									
@@ -311,7 +312,17 @@ if(scopes != null) {
 		</div>
 <% } %>
 <a class="btn btn-default" style="margin-top:20px;" href="<%= request.getContextPath()+"/simple-search?location="+searchScopeTemp+"&pesquisa=avancada" %>"><fmt:message key="jsp.pesquisa.byedmar.pesquisaavancada" /></a>
-<a style="position: absolute;padding-top: 25px;padding-left: 25px;" href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/79183/dicas_pesquisa_atos.pdf">Dicas de pesquisa</a>	
+<%if(EdmarUtils.seColecaoOuComunidadeAtos(searchScopeTemp)) {
+	%>
+	<a style="position: absolute;padding-top: 25px;padding-left: 25px;" href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/79183/dicas_pesquisa_atos.pdf">Dicas de pesquisa</a>
+	<% 
+} else if(EdmarUtils.seColecaoOuComunidadeDoutrina(searchScopeTemp)) {
+%><a style="position: absolute;padding-top: 25px;padding-left: 25px;" href="http://bdjur.stj.jus.br/xmlui/bitstream/id/289160/dicas_pesquisa_doutrina.pdf">Dicas de pesquisa</a>
+<% } else {
+%>
+<a style="position: absolute;padding-top: 25px;padding-left: 25px;" href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/79183/dicas_pesquisa_repositorio.pdf">Dicas de pesquisa</a>
+<% }%>
+	
 
 		</form>
 		</div>
@@ -415,94 +426,6 @@ else if( qResults != null)
 	}
 	if (brefine) {
 %>
-
-<h3 class="facets"><fmt:message key="jsp.search.facet.refine" /></h3>
-<div id="facets" class="facetsBox">
-
-<%
-	for (DiscoverySearchFilterFacet facetConf : facetsConf)
-	{
-	    String f = facetConf.getIndexFieldName();
-	    if (!showFacets.get(f))
-	        continue;
-	    List<FacetResult> facet = qResults.getFacetResult(f);
-	    if (facet.size() == 0)
-	    {
-	        facet = qResults.getFacetResult(f+".year");
-	    }
-	    int limit = facetConf.getFacetLimit()+1;
-	    
-	    String fkey = "jsp.search.facet.refine."+f;
-	    %><div id="facet_<%= f %>" class="panel panel-success">
-	    <div class="panel-heading"><fmt:message key="<%= fkey %>" /></div>
-	    <ul class="list-group"><%
-	    int idx = 1;
-	    int currFp = UIUtil.getIntParameter(request, f+"_page");
-	    if (currFp < 0)
-	    {
-	        currFp = 0;
-	    }
-	    for (FacetResult fvalue : facet)
-	    { 
-	        if (idx != limit && !appliedFilterQueries.contains(f+"::"+fvalue.getFilterType()+"::"+fvalue.getAsFilterQuery()))
-	        {
-	        %><li class="list-group-item"><span class="badge"><%= fvalue.getCount() %></span> <a href="<%= request.getContextPath()
-                + (searchScopeTemp!=""?"/handle/"+searchScopeTemp:"")
-                + "/simple-search?query="
-                + URLEncoder.encode(query,"UTF-8")
-                + "&amp;sort_by=" + sortedBy
-                + "&amp;order=" + order
-                + "&amp;rpp=" + rpp
-                + httpFilters
-                + "&amp;etal=" + etAl
-                + "&amp;filtername="+URLEncoder.encode(f,"UTF-8")
-                + "&amp;filterquery="+URLEncoder.encode(fvalue.getAsFilterQuery(),"UTF-8")
-                + "&amp;filtertype="+URLEncoder.encode(fvalue.getFilterType(),"UTF-8") %>"
-                title="<fmt:message key="jsp.search.facet.narrow"><fmt:param><%=fvalue.getDisplayedValue() %></fmt:param></fmt:message>">
-                <%= StringUtils.abbreviate(fvalue.getDisplayedValue(),36) %></a></li><%
-                idx++;
-	        }
-	        if (idx > limit)
-	        {
-	            break;
-	        }
-	    }
-	    if (currFp > 0 || idx == limit)
-	    {
-	        %><li class="list-group-item"><span style="visibility: hidden;">.</span>
-	        <% if (currFp > 0) { %>
-	        <a class="pull-left" href="<%= request.getContextPath()
-	            + (searchScopeTemp!=""?"/handle/"+searchScopeTemp:"")
-                + "/simple-search?query="
-                + URLEncoder.encode(query,"UTF-8")
-                + "&amp;sort_by=" + sortedBy
-                + "&amp;order=" + order
-                + "&amp;rpp=" + rpp
-                + httpFilters
-                + "&amp;etal=" + etAl  
-                + "&amp;"+f+"_page="+(currFp-1) %>"><fmt:message key="jsp.search.facet.refine.previous" /></a>
-            <% } %>
-            <% if (idx == limit) { %>
-            <a href="<%= request.getContextPath()
-	            + (searchScopeTemp!=""?"/handle/"+searchScopeTemp:"")
-                + "/simple-search?query="
-                + URLEncoder.encode(query,"UTF-8")
-                + "&amp;sort_by=" + sortedBy
-                + "&amp;order=" + order
-                + "&amp;rpp=" + rpp
-                + httpFilters
-                + "&amp;etal=" + etAl  
-                + "&amp;"+f+"_page="+(currFp+1) %>"><span class="pull-right"><fmt:message key="jsp.search.facet.refine.next" /></span></a>
-            <%
-            }
-            %></li><%
-	    }
-	    %></ul></div><%
-	}
-
-%>
-
-</div>
 <% } %>
 </dspace:sidebar>
 

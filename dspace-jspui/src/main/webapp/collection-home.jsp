@@ -185,80 +185,8 @@
     <%-- give us the top report on what we are looking at --%>
     <fmt:message var="bi_name" key="<%= bi_name_key %>"/>
     <fmt:message var="so_name" key="<%= so_name_key %>"/>
-    <div align="center" class="browse_range">
-        <fmt:message key="jsp.collection-home.content.range">
-            <fmt:param value="${bi_name}"/>
-            <fmt:param value="${so_name}"/>
-            <fmt:param value="<%= Integer.toString(bi.getStart()) %>"/>
-            <fmt:param value="<%= Integer.toString(bi.getFinish()) %>"/>
-            <fmt:param value="<%= Integer.toString(bi.getTotal()) %>"/>
-        </fmt:message>
-    </div>
+    
 
-    <%--  do the top previous and next page links --%>
-    <div align="center">
-<% 
-      if (bi.hasPrevPage())
-      {
-%>
-      <a href="<%= prev %>"><fmt:message key="browse.full.prev"/></a>&nbsp;
-<%
-      }
-
-      if (bi.hasNextPage())
-      {
-%>
-      &nbsp;<a href="<%= next %>"><fmt:message key="browse.full.next"/></a>
-<%
-      }
-%>
-    </div>
-
-<%-- output the results using the browselist tag --%>
-<%
-      if (bix.isMetadataIndex())
-      {
-%>
-      <dspace:browselist browseInfo="<%= bi %>" emphcolumn="<%= bix.getMetadata() %>" />
-<%
-      }
-      else
-      {
-%>
-      <dspace:browselist browseInfo="<%= bi %>" emphcolumn="<%= bix.getSortOption().getMetadata() %>" />
-<%
-      }
-%>
-
-    <%-- give us the bottom report on what we are looking at --%>
-    <div align="center" class="browse_range">
-        <fmt:message key="jsp.collection-home.content.range">
-            <fmt:param value="${bi_name}"/>
-            <fmt:param value="${so_name}"/>
-            <fmt:param value="<%= Integer.toString(bi.getStart()) %>"/>
-            <fmt:param value="<%= Integer.toString(bi.getFinish()) %>"/>
-            <fmt:param value="<%= Integer.toString(bi.getTotal()) %>"/>
-        </fmt:message>
-    </div>
-
-    <%--  do the bottom previous and next page links --%>
-    <div align="center">
-<% 
-      if (bi.hasPrevPage())
-      {
-%>
-      <a href="<%= prev %>"><fmt:message key="browse.full.prev"/></a>&nbsp;
-<%
-      }
-
-      if (bi.hasNextPage())
-      {
-%>
-      &nbsp;<a href="<%= next %>"><fmt:message key="browse.full.next"/></a>
-<%
-      }
-%>
-    </div>
 
 <%
    } // end of if (show_title)
@@ -345,7 +273,7 @@
     %>
     <%@ include file="discovery/static-sidebar-facet.jsp" %>
     <% Collection[] collections = {}; %> </div>
-    <div class="col-md-9"><%@ include file="search/discoveryInclude.jsp" %>
+    <div class="col-md-9" style="margin-top:-110px"><%@ include file="search/discoveryInclude.jsp" %>
     <%
     	String[] fmts = feedData.substring(5).split(",");
     	String icon = null;

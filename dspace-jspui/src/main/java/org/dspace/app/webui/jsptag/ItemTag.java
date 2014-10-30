@@ -381,6 +381,7 @@ public class ItemTag extends TagSupport
      */
     private void render() throws IOException, SQLException, DCInputsReaderException
     {
+    	showMediaPlayer();
         JspWriter out = pageContext.getOut();
         HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
         Context context = UIUtil.obtainContext(request);
@@ -636,12 +637,63 @@ public class ItemTag extends TagSupport
             showLicence();
         }
     }
+    
+    
+    private void showMediaPlayer() throws IOException
+    {
+        try
+        {
+            Bundle[] bundles = item.getBundles("ORIGINAL");
+            if (bundles.length > 0)
+            {
+                Bitstream[] bitstreams = bundles[0].getBitstreams();
+                boolean found = false;
+                for (Bitstream bitstream : bitstreams)
+                {
+                    if (!found)
+                    {
+                        if ("video/x-flv".equals(bitstream.getFormat().getMIMEType()))
+                        {
+                            // We found one, don't search for any more
+                            found = true;
+                             
+                            // Display the player
+                            HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
+                            String url = request.getContextPath() + 
+                                        "/bitstream/" + item.getHandle() + "/" +
+                                        bitstream.getSequenceID() + "/" +
+                                        UIUtil.encodeBitstreamName(bitstream.getName(), Constants.DEFAULT_ENCODING);
+                            JspWriter out = pageContext.getOut();
+                            out.println("<script type=\"text/javascript\" src=\"" + request.getContextPath() +
+                                        "/jwplayer.html5.js\"></script>\n" +
+                                        "<div id=\"myElement\">Loading the player...</div>" +
+                                    " <script type=\"text/javascript\">" +
+                                   "jwplayer(\"myElement\").setup({" +
+                                   "file: \""+url+"\"" +
+                                    "});" +
+                                    "</script>");
+                            
+                            
+                        
+                        }
+                    }
+                }
+            }
+        }
+        catch (SQLException sqle)
+        {
+            // Do nothing
+        }
+    }
+    
+    
 
     /**
      * Render full item record
      */
     private void renderFull() throws IOException, SQLException
     {
+    	
         JspWriter out = pageContext.getOut();
         HttpServletRequest request = (HttpServletRequest)pageContext.getRequest();
         Context context = UIUtil.obtainContext(request);

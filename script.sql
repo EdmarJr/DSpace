@@ -5,6 +5,7 @@ insert into metadatafieldregistry (metadata_schema_id,element,qualifier,scope_no
 insert into community (community_id,name,short_description) values (1,'Atos Administrativos','');
 insert into community (community_id,name,short_description) values (2,'Doutrina','');
 insert into community (community_id,name,short_description) values (3,'Repositório Institucional','');
+insert into community (community_id,name,short_description) values (4,'Toda a BDJur','');
 
 insert into resourcepolicy (policy_id,resource_type_id,resource_id,action_id,epersongroup_id) values (1,4,1,0,0);
 insert into resourcepolicy (policy_id,resource_type_id,resource_id,action_id,epersongroup_id) values (2,4,2,0,0);
@@ -161,11 +162,12 @@ insert into handle values (19,'123456789/19',3,16);
 insert into handle values (20,'123456789/20',3,17);
 insert into handle values (21,'123456789/21',3,18);
 insert into handle values (22,'123456789/22',3,19);
+insert into handle values (23,'123456789/25',4,4);
 
-ALTER SEQUENCE handle_seq RESTART WITH 23;
+ALTER SEQUENCE handle_seq RESTART WITH 24;
 ALTER SEQUENCE community2collection_seq RESTART WITH 20;
 ALTER SEQUENCE collection_seq RESTART WITH 20;
-ALTER SEQUENCE community_seq RESTART WITH 4;
+ALTER SEQUENCE community_seq RESTART WITH 5;
 ALTER SEQUENCE resourcepolicy_seq RESTART WITH 61;
 
 
