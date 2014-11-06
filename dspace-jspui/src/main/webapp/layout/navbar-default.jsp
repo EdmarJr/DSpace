@@ -86,11 +86,10 @@
           
                 
            <li class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.browse"/> <b class="caret"></b></a>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="jsp.layout.navbar-default.navegar"/> <b class="caret"></b></a>
              <ul class="dropdown-menu">
-               <li><a href="<%= request.getContextPath() %>/community-list"><fmt:message key="jsp.layout.navbar-default.communities-collections"/></a></li>
-				<li class="divider"></li>
-				<li class="dropdown-header">Browse Items by:</li>
+               <li><a href="<%= request.getContextPath() %>/community-list"><fmt:message key="jsp.layout.navbar-default.colecao"/></a></li>
+				
 				<%-- Insert the dynamic browse indices here --%>
 				
 				<%
@@ -98,6 +97,9 @@
 					{
 						BrowseIndex bix = bis[i];
 						String key = "browse.menu." + bix.getName();
+						if(bix.getName().equals("dateissued") || bix.getName().equals("author")) {
+							key = "browse.menu.byedmar." + bix.getName();
+						}
 					%>
 				      			<li><a href="<%= request.getContextPath() %>/browse?type=<%= bix.getName() %>"><fmt:message key="<%= key %>"/></a></li>
 					<%	
@@ -108,8 +110,9 @@
 
             </ul>
           </li>
+          <li class="<%= currentPage.endsWith("statistics")? "active" : "" %>"><a href="<%= request.getContextPath() %>/statistics"><span class="glyphicon"></span>Estatísticas</a></li>
           <li><a href="http://bdjur.stj.jus.br/xmlui/bitstream/handle/2011/52495/FAQ_BDJur.pdf"><span class="glyphicon"></span>Perguntas frequentes</a></li>
-          <li class="<%= currentPage.endsWith("/feedback")? "active" : "" %>"><a href="<%= request.getContextPath() %>/feedback"><span class="glyphicon"></span>Avalie a BDJur</a></li>
+          <li class="<%= currentPage.endsWith("feedback")? "active" : "" %>"><a href="<%= request.getContextPath() %>/feedback"><span class="glyphicon"></span>Avalie a BDJur</a></li>
        </ul>
        <div class="nav navbar-nav navbar-right">
 		<ul class="nav navbar-nav navbar-right">
@@ -124,11 +127,10 @@
 		<%
     } else {
 		%>
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.sign"/> <b class="caret"></b></a>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.login"/> <b class="caret"></b></a>
 	<% } %>             
              <ul class="dropdown-menu">
-               <li><a href="<%= request.getContextPath() %>/mydspace"><fmt:message key="jsp.layout.navbar-default.users"/></a></li>
-               <li><a href="<%= request.getContextPath() %>/subscribe"><fmt:message key="jsp.layout.navbar-default.receive"/></a></li>
+               <li><a href="<%= request.getContextPath() %>/mydspace"><fmt:message key="jsp.layout.navbar-default.entrar"/></a></li>
                <li><a href="<%= request.getContextPath() %>/profile"><fmt:message key="jsp.layout.navbar-default.edit"/></a></li>
 
 		<%

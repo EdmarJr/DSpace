@@ -115,7 +115,7 @@
 <%
             }
 %>
-		<small><fmt:message key="jsp.collection-home.heading1"/></small>
+		
       
       </h2></div>
 <%  if (logo != null) { %>
@@ -196,7 +196,7 @@
 <% if(admin_button || editor_button ) { %>
                  <div class="panel panel-warning">
                  <div class="panel-heading"><fmt:message key="jsp.admintools"/>
-                 	<span class="pull-right"><dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.collection-admin\")%>"><fmt:message key="jsp.adminhelp"/></dspace:popup></span>
+                 
                  </div>
                  <div class="panel-body">              
 <% if( editor_button ) { %>
@@ -271,8 +271,13 @@
     	int discovery_panel_cols = 12;
     	int discovery_facet_cols = 12;
     %>
-    <%@ include file="discovery/static-sidebar-facet.jsp" %>
-    <% Collection[] collections = {}; %> </div>
+   
+    <% 
+    	Collection[] collections = {}; 
+    	List<DiscoverySearchFilterFacet> facetsConf = (List<DiscoverySearchFilterFacet>) request.getAttribute("facetsConfig");
+    	String searchScope = (String) request.getAttribute("discovery.searchScope");
+    	boolean brefine = false;
+    %> </div>
     <div class="col-md-9" style="margin-top:-110px"><%@ include file="search/discoveryInclude.jsp" %>
     <%
     	String[] fmts = feedData.substring(5).split(",");

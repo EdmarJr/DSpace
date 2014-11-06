@@ -15,10 +15,9 @@
     prefix="fmt" %>
 	<div class="panel-body">
      <form name="loginform" class="form-horizontal" id="loginform" method="post" action="<%= request.getContextPath() %>/password-login">  
-      <p><strong><a href="<%= request.getContextPath() %>/register"><fmt:message key="jsp.components.login-form.newuser"/></a></strong></p>
-	  <p><fmt:message key="jsp.components.login-form.enter"/></p>
+	  <p style="font-size:16px; font-weight: bold;">Login restrito aos Ministros e servidores do STJ</p>
 		<div class="form-group">
-            <label class="col-md-offset-3 col-md-2 control-label" for="tlogin_email"><fmt:message key="jsp.components.login-form.email"/></label>
+            <label class="col-md-offset-3 col-md-2 control-label" for="tlogin_email"><fmt:message key="jsp.components.login-form.loginedmar"/></label>
             <div class="col-md-3">
             	<input class="form-control" type="text" name="login_email" id="tlogin_email" tabindex="1" />
             </div>
@@ -28,13 +27,15 @@
             <div class="col-md-3">
             	<input class="form-control" type="password" name="login_password" id="tlogin_password" tabindex="2" />
             </div>
+            <div class="col-md-2"><p><a href="/jspui/forgot">Esqueceu sua senha?</a></p></div>
         </div>
         <div class="row">
         <div class="col-md-6">
         	<input type="submit" class="btn btn-success pull-right" name="login_submit" value="<fmt:message key="jsp.components.login-form.login"/>" tabindex="3" />
         </div>
         </div>
-  		<p><a href="<%= request.getContextPath() %>/forgot"><fmt:message key="jsp.components.login-form.forgot"/></a></p>
+  		<br/>
+  		<p><b>Ministros e servidores do STJ:</b> utilize seu usuário e senha da rede para acessar.<br/> Caso não consiga fazer login, entre em contato: ramais 9880/9284 ou e-mail <a href="bdjur@stj.jus.br">bdjur@stj.jus.br</a></p>
       </form>
       <script type="text/javascript">
 		document.loginform.login_email.focus();

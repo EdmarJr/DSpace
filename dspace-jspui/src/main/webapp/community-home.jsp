@@ -87,7 +87,7 @@
 <%
             }
 %>
-		<small><fmt:message key="jsp.community-home.heading1"/></small>
+		
         
 		</h2>
 	</div>
@@ -152,13 +152,16 @@
 	<a style="margin-bottom:30px" class="statisticsLink btn btn-default" href="<%= request.getContextPath() %>/handle/<%= community.getHandle() %>/statistics"><fmt:message key="jsp.community-home.display-statistics"/></a>
 	<br/>
 	<div class="panel panel-primary">
-	<div class="panel-heading"><fmt:message key="jsp.general.browse"/></div>
+	<div class="panel-heading"><fmt:message key="jsp.layout.navbar-default.navegar"/></div>
 	<div class="panel-body">
    				<%-- Insert the dynamic list of browse options --%>
 <%
 	for (int i = 0; i < bis.length; i++)
 	{
 		String key = "browse.menu." + bis[i].getName();
+		if(bis[i].getName().equals("dateissued") || bis[i].getName().equals("author")) {
+			key = "browse.menu.byedmar." + bis[i].getName();
+		}
 %>
 	<form method="get" action="<%= request.getContextPath() %>/handle/<%= community.getHandle() %>/browse">
 		<input type="hidden" name="type" value="<%= bis[i].getName() %>"/>
@@ -237,7 +240,7 @@
 	<div class="col-md-6">
 
         <%-- <h2>Collections in this community</h2> --%>
-		<h3><fmt:message key="jsp.community-home.heading2"/></h3>
+		<h3>Coleções</h3>
 		<div class="list-group">
 <%
         for (int i = 0; i < collections.length; i++)
@@ -287,5 +290,59 @@
     }
 %>
 </div>
+    
+    <% if(editor_button || add_button)  // edit button(s)
+    { %>
+    <dspace:sidebar>
+		 <div class="panel panel-warning">
+             <div class="panel-heading">
+             	<fmt:message key="jsp.admintools"/>
+             	
+             	</div>
+             <div class="panel-body">
+             <% if(editor_button) { %>
+	            <form method="post" action="<%=request.getContextPath()%>/tools/edit-communities">
+		          <input type="hidden" name="community_id" value="<%= community.getID() %>" />
+		          <input type="hidden" name="action" value="<%=EditCommunitiesServlet.START_EDIT_COMMUNITY%>" />
+                  <%--<input type="submit" value="Edit..." />--%>
+                  <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.general.edit.button"/>" />
+                </form>
+             <% } %>
+             <% if(add_button) { %>
+
+				<form method="post" action="<%=request.getContextPath()%>/tools/collection-wizard">
+		     		<input type="hidden" name="community_id" value="<%= community.getID() %>" />
+                    <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.community-home.create1.button"/>" />
+                </form>
+                
+                <form method="post" action="<%=request.getContextPath()%>/tools/edit-communities">
+                    <input type="hidden" name="action" value="<%= EditCommunitiesServlet.START_CREATE_COMMUNITY%>" />
+                    <input type="hidden" name="parent_community_id" value="<%= community.getID() %>" />
+                    <%--<input type="submit" name="submit" value="Create Sub-community" />--%>
+                    <input class="btn btn-default col-md-12" type="submit" name="submit" value="<fmt:message key="jsp.community-home.create2.button"/>" />
+                 </form>
+             <% } %>
+            <% if( editor_button ) { %>
+                <form method="post" action="<%=request.getContextPath()%>/mydspace">
+                  <input type="hidden" name="community_id" value="<%= community.getID() %>" />
+                  <input type="hidden" name="step" value="<%= MyDSpaceServlet.REQUEST_EXPORT_ARCHIVE %>" />
+                  <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.mydspace.request.export.community"/>" />
+                </form>
+              <form method="post" action="<%=request.getContextPath()%>/mydspace">
+                <input type="hidden" name="community_id" value="<%= community.getID() %>" />
+                <input type="hidden" name="step" value="<%= MyDSpaceServlet.REQUEST_MIGRATE_ARCHIVE %>" />
+                <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.mydspace.request.export.migratecommunity"/>" />
+              </form>
+               <form method="post" action="<%=request.getContextPath()%>/dspace-admin/metadataexport">
+                 <input type="hidden" name="handle" value="<%= community.getHandle() %>" />
+                 <input class="btn btn-default col-md-12" type="submit" value="<fmt:message key="jsp.general.metadataexport.button"/>" />
+               </form>
+			<% } %>
+			</div>
+		</div>
+  </dspace:sidebar>
+    <% } %>
+    
+    
     
 </dspace:layout>
