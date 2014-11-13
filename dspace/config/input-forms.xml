@@ -861,7 +861,7 @@
          <repeatable>false</repeatable>
          <label>Data de assinatura </label>
          <input-type>date</input-type>
-         <hint>Por favor, indique a data de assinatura. Você pode deixar de fora o dia e / ou mês, se não forem aplicáveis.</hint>
+         <hint>Indique a data de assinatura. Preencha o dia e mês, se forem aplicáveis.</hint>
          <required>Você deve digitar pelo menos o ano.</required>
        </field>	   
        <field>

@@ -156,7 +156,7 @@ public abstract class AbstractBrowserServlet extends DSpaceServlet
 
             if (order == null && bi != null)
             {
-                order = bi.getDefaultOrder();
+                order = "DESC";
             }
 
             // If the offset is invalid, reset to 0
@@ -306,13 +306,11 @@ public abstract class AbstractBrowserServlet extends DSpaceServlet
             AuthorizeException
     {
         try
-        {
+        {	
             BrowseIndex bi = scope.getBrowseIndex();
-
             // now start up a browse engine and get it to do the work for us
             BrowseEngine be = new BrowseEngine(context);
             BrowseInfo binfo = be.browse(scope);
-            
             request.setAttribute("browse.info", binfo);
 
             if (AuthorizeManager.isAdmin(context))

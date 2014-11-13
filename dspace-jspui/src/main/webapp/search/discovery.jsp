@@ -162,8 +162,7 @@
 <div class="discovery-search-form panel panel-default">
     <%-- Controls for a repeat search --%>
 	<div class="discovery-query panel-heading">
-    <form action="simple-search" method="get">
-         <label for="tlocation">
+    <label for="tlocation">
          	<fmt:message key="jsp.search.results.searchin"/>
          </label>
          <select name="location" id="tlocation">
@@ -188,19 +187,15 @@
                                 	<%= dso.getName() %></option>
 <%
     }
-%>                                </select><br/>
-                                <label for="query"><fmt:message key="jsp.search.results.searchfor"/></label>
-                                <input type="text" size="50" id="query" name="query" value="<%= (query==null ? "" : StringEscapeUtils.escapeHtml(query)) %>"/>
-                                <input type="submit" id="main-query-submit" class="btn btn-primary" value="<fmt:message key="jsp.general.go"/>" />
-<% if (StringUtils.isNotBlank(spellCheckQuery)) {%>
-	<p class="lead"><fmt:message key="jsp.search.didyoumean"><fmt:param><a id="spellCheckQuery" data-spell="<%= StringEscapeUtils.escapeHtml(spellCheckQuery) %>" href="#"><%= spellCheckQuery %></a></fmt:param></fmt:message></p>
-<% } %>                  
-                                <input type="hidden" value="<%= rpp %>" name="rpp" />
-                                <input type="hidden" value="<%= sortedBy %>" name="sort_by" />
-                                <input type="hidden" value="<%= order %>" name="order" />
+%>                                </select>
+		</div>
+<% if (availableFilters.size() > 0) { %>
+		<div class="discovery-search-filters panel-body">
+		<form action="simple-search" method="get">
 <% if (appliedFilters.size() > 0 ) { %>                                
 		<div class="discovery-search-appliedFilters">
 		<span><fmt:message key="jsp.search.filter.applied" /></span>
+		<br/>
 		<%
 			int idx = 1;
 			for (String[] filter : appliedFilters)
@@ -231,8 +226,16 @@
 				<%
 					for (String opt : options)
 					{
-					    String fkey = "jsp.search.filter.op."+opt;
-					    %><option value="<%= opt %>"<%= opt.equals(filter[1])?" selected=\"selected\"":"" %>><fmt:message key="<%= fkey %>"/></option><%
+						if(opt.equals("authority") || opt.equals("notequals") || opt.equals("notcontains") || opt.equals("notauthority")) {
+							continue;
+						}
+						if(opt.equals("equals")) {
+							%><option value="<%= opt %>" <%= opt.equals(filter[1])?" selected=\"selected\"":"" %>>Igual</option><%
+						} else {
+						    String fkey = "jsp.search.filter.op."+opt;
+						    %><option value="<%= opt %>" <%= opt.equals(filter[1])?" selected=\"selected\"":"" %>><fmt:message key="<%= fkey %>"/></option><%
+			    		}
+						
 					}
 				%>
 				</select>
@@ -245,13 +248,7 @@
 		%>
 		</div>
 <% } %>
-<a class="btn btn-default" href="<%= request.getContextPath()+"/simple-search" %>"><fmt:message key="jsp.search.general.new-search" /></a>	
 		</form>
-		</div>
-<% if (availableFilters.size() > 0) { %>
-		<div class="discovery-search-filters panel-body">
-		<h5><fmt:message key="jsp.search.filter.heading" /></h5>
-		<p class="discovery-search-filters-hint"><fmt:message key="jsp.search.filter.hint" /></p>
 		<form action="simple-search" method="get">
 		<input type="hidden" value="<%= StringEscapeUtils.escapeHtml(searchScope) %>" name="location" />
 		<input type="hidden" value="<%= StringEscapeUtils.escapeHtml(query) %>" name="query" />
@@ -280,9 +277,16 @@
 		<select id="filtertype" name="filtertype">
 		<%
 			for (String opt : options)
-			{
-			    String fkey = "jsp.search.filter.op."+opt;
-			    %><option value="<%= opt %>"><fmt:message key="<%= fkey %>"/></option><%
+			{	
+				if(opt.equals("authority") || opt.equals("notequals") || opt.equals("notcontains") || opt.equals("notauthority")) {
+					continue;
+				}
+				if(opt.equals("equals")) {
+					%><option value="<%= opt %>">Igual</option><%
+				} else {
+				    String fkey = "jsp.search.filter.op."+opt;
+				    %><option value="<%= opt %>"><fmt:message key="<%= fkey %>"/></option><%
+	    		}
 			}
 		%>
 		</select>
@@ -291,8 +295,9 @@
         <input type="hidden" value="<%= sortedBy %>" name="sort_by" />
         <input type="hidden" value="<%= order %>" name="order" />
         <input type="hidden" value="<%= pesquisaAvancada %>" name="pesquisa" />
-		<input class="btn btn-default" type="submit" value="<fmt:message key="jsp.search.filter.add"/>" />
+		<input class="btn btn-default" type="submit" value="+" /><br/>
 		</form>
+		<input style="float:right;" type="button" onclick="window.location.reload()" id="main-query-submit" class="btn btn-primary" value="Pesquisar">
 		</div>        
 <% } %>
         <%-- Include a component for modifying sort by, order, results per page, and et-al limit --%>

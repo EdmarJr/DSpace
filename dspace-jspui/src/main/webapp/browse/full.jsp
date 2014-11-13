@@ -18,6 +18,7 @@
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
 <%@ page import="org.dspace.browse.BrowseInfo" %>
+<%@ page import="org.dspace.browse.BrowseItem" %>
 <%@ page import="org.dspace.sort.SortOption" %>
 <%@ page import="org.dspace.content.Collection" %>
 <%@ page import="org.dspace.content.Community" %>
@@ -177,7 +178,7 @@
 
 	<%-- Build the header (careful use of spacing) --%>
 	<h2>
-		<fmt:message key="browse.full.header"><fmt:param value="<%= scope %>"/></fmt:message> <fmt:message key="<%= typeKey %>"/> <%= value %>
+		<%= scope %> - Lista por <fmt:message key="<%= typeKey %>"/>
 	</h2>
 
 	<%-- Include the main navigation for all the browse pages --%>
@@ -205,7 +206,7 @@
 	if (so.isDate() || (bix.isDate() && so.isDefault()))
 	{
 %>
-		<span><fmt:message key="browse.nav.date.jump"/></span>
+		<span>Ir para</span>
 		<select name="year">
 	        <option selected="selected" value="-1"><fmt:message key="browse.nav.year"/></option>
 <%
@@ -235,7 +236,7 @@
 		}
 %>
         </select>
-        <input type="submit" class="btn btn-default" value="<fmt:message key="browse.nav.go"/>" />
+        <input type="submit" class="btn btn-default" value="Listar" />
         <br/>
         <label for="starts_with"><fmt:message key="browse.nav.type-year"/></label>
         <input type="text" name="starts_with" size="4" maxlength="4"/>
@@ -318,8 +319,8 @@
 %>
 		<label for="order"><fmt:message key="browse.full.order"/></label>
 		<select name="order">
-			<option value="ASC" <%= ascSelected %>><fmt:message key="browse.order.asc" /></option>
-			<option value="DESC" <%= descSelected %>><fmt:message key="browse.order.desc" /></option>
+			<option value="ASC" <%= ascSelected %>>Crescente</option>
+			<option value="DESC" <%= descSelected %>>Decrescente</option>
 		</select>
 
 		<label for="rpp"><fmt:message key="browse.full.rpp"/></label>
@@ -444,8 +445,17 @@
     	}
     	else
     	{
+		
+		for(Object b : bi.getResults()) {
+			System.out.println((BrowseItem) b);
 	%>
-	<dspace:browselist browseInfo="<%= bi %>" emphcolumn="<%= bix.getSortOption().getMetadata() %>" />
+	<%= ((BrowseItem) b).getName()%>
+	<%
+	}
+	%>
+	
+<%-- 	<dspace:edmar-panelWithTable items="<%= bi.getResults() %>" /> --%>
+<%-- 	<dspace:browselist browseInfo="<%= bi %>" emphcolumn="<%= bix.getSortOption().getMetadata() %>" /> --%>
 	<%
     	}
 	%>
