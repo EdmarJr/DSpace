@@ -36,6 +36,7 @@
 <%@page import="org.dspace.discovery.configuration.DiscoverySearchFilterFacet"%>
 <%@page import="org.dspace.app.webui.util.UIUtil"%>
 <%@page import="java.util.HashMap"%>
+<%@page import="org.dspace.utils.EdmarUtils"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.dspace.discovery.DiscoverFacetField"%>
 <%@page import="org.dspace.discovery.configuration.DiscoverySearchFilter"%>
@@ -153,6 +154,12 @@
 </script>		
 </c:set>
 
+
+	
+
+
+
+
 <dspace:layout titlekey="jsp.search.title">
 
     <%-- <h1>Search Results</h1> --%>
@@ -160,6 +167,10 @@
 <h2><fmt:message key="jsp.search.title"/></h2>
 
 <div class="discovery-search-form panel panel-default">
+    <%
+if(!EdmarUtils.isPesquisaSimples((String)request.getAttribute("pesquisa"))) {
+
+%>
     <%-- Controls for a repeat search --%>
 	<div class="discovery-query panel-heading">
     <label for="tlocation">
@@ -301,8 +312,24 @@
 		</div>        
 <% } %>
         <%-- Include a component for modifying sort by, order, results per page, and et-al limit --%>
+        
+        <%} else {
+	
+	%>
+	
+	
+	<a class="btn btn-default" onclick="window.history.go(-1)">Refazer pesquisa</a>
+	<%
+}
+	%>
+        
    <div class="discovery-pagination-controls panel-footer">
    <form action="simple-search" method="get">
+   <% if(EdmarUtils.isPesquisaSimples((String)request.getAttribute("pesquisa"))) {
+	
+	   %>
+	   <input type="hidden" value="simples" name="pesquisa" />
+   <%} %>
    <input type="hidden" value="<%= StringEscapeUtils.escapeHtml(searchScope) %>" name="location" />
    <input type="hidden" value="<%= StringEscapeUtils.escapeHtml(query) %>" name="query" />
 	<% if (appliedFilterQueries.size() > 0 ) { 
@@ -352,8 +379,8 @@
 %>
            <label for="order"><fmt:message key="search.results.order"/></label>
            <select name="order">
-               <option value="ASC" <%= ascSelected %>><fmt:message key="search.order.asc" /></option>
-               <option value="DESC" <%= descSelected %>><fmt:message key="search.order.desc" /></option>
+               <option value="ASC" <%= ascSelected %>>Crescente</option>
+               <option value="DESC" <%= descSelected %>>Decrescente</option>
            </select>
            <label for="etal"><fmt:message key="search.results.etal" /></label>
            <select name="etal">
@@ -397,7 +424,7 @@
                }
 %>
            </select>
-           <input class="btn btn-default" type="submit" name="submit_search" value="<fmt:message key="search.update" />" />
+           <input class="btn btn-default" type="submit" name="submit_search" value="Exibir" />
 
 <%
     if (admin_button)
@@ -408,7 +435,8 @@
 </form>
    </div>
 </div>   
-<% 
+
+<%
 
 DiscoverResult qResults = (DiscoverResult)request.getAttribute("queryresults");
 Item      [] items       = (Item[]      )request.getAttribute("items");

@@ -137,8 +137,8 @@
 
                 <%-- <strong>Please use this identifier to cite or link to this item:
                 <code><%= HandleManager.getCanonicalForm(handle) %></code></strong>--%>
-                <div class="well"><fmt:message key="jsp.display-item.identifier"/>
-                <code><%= HandleManager.getCanonicalForm(handle) %></code></div>
+<%--                 <div class="well"><fmt:message key="jsp.display-item.identifier"/> --%>
+<%--                 <code><%= HandleManager.getCanonicalForm(handle) %></code></div> --%>
 <%
         if (admin_button)  // admin edit button
         { %>
@@ -203,13 +203,14 @@
 %>
     <form class="col-md-2" method="post" action="<%= request.getContextPath() %>/view-workspaceitem">
         <input type="hidden" name="workspace_id" value="<%= workspace_id.intValue() %>" />
-        <input class="btn btn-default" type="submit" name="submit_simple" value="<fmt:message key="jsp.display-item.text1"/>" />
+        <input class="btn btn-default" type="submit" name="submit_simple" value="Exibir registro simples" />
     </form>
 <%
         }
         else
         {
-%>
+%>	
+	<p></p>
     <a class="btn btn-default" href="<%=locationLink %>?mode=simple">
         <fmt:message key="jsp.display-item.text1"/>
     </a>
@@ -227,7 +228,7 @@
 %>
     <form class="col-md-2" method="post" action="<%= request.getContextPath() %>/view-workspaceitem">
         <input type="hidden" name="workspace_id" value="<%= workspace_id.intValue() %>" />
-        <input class="btn btn-default" type="submit" name="submit_full" value="<fmt:message key="jsp.display-item.text2"/>" />
+        <input class="btn btn-default" type="submit" name="submit_full" value="Exibir registro completo" />
     </form>
 <%
         }
@@ -330,16 +331,13 @@
     if (cc_url != null)
     {
 %>
-    <p class="submitFormHelp alert alert-info"><fmt:message key="jsp.display-item.text3"/> <a href="<%= cc_url %>"><fmt:message key="jsp.display-item.license"/></a>
-    <a href="<%= cc_url %>"><img src="<%= request.getContextPath() %>/image/cc-somerights.gif" border="0" alt="Creative Commons" style="margin-top: -5px;" class="pull-right"/></a>
-    </p>
     <!--
     <%= cc_rdf %>
     -->
 <%
     } else {
 %>
-    <p class="submitFormHelp alert alert-info"><fmt:message key="jsp.display-item.copyright"/></p>
+    
 <%
     } 
 %>    

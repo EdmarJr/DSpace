@@ -38,4 +38,8 @@ public class EdmarUtils {
 		String ultimosNumeros = handle.split("/")[1];
 		return ultimosNumeros;
 	}
+	
+	public static Boolean isPesquisaSimples(String pesquisa) {
+		return pesquisa != null && pesquisa.equals("simples") ? Boolean.TRUE : Boolean.FALSE;
+	}
 }

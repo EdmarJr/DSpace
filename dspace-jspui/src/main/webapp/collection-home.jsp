@@ -316,7 +316,7 @@
   <%-- Browse --%>
   <div class="panel panel-primary">
   	<div class="panel-heading">
-        <fmt:message key="jsp.general.browse"/>
+        <fmt:message key="jsp.layout.navbar-default.navegar"/>
 	</div>
 	<div class="panel-body">
 	<%-- Insert the dynamic list of browse options --%>
@@ -324,6 +324,9 @@
 	for (int i = 0; i < bis.length; i++)
 	{
 		String key = "browse.menu." + bis[i].getName();
+		if(bis[i].getName().equals("dateissued") || bis[i].getName().equals("author")) {
+			key = "browse.menu.byedmar." + bis[i].getName();
+		}
 %>
 	<form method="get" class="btn-group" action="<%= request.getContextPath() %>/handle/<%= collection.getHandle() %>/browse">
 		<input type="hidden" name="type" value="<%= bis[i].getName() %>"/>

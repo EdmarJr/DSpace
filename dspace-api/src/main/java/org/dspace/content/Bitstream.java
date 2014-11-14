@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.authorize.AuthorizeManager;
@@ -603,6 +605,22 @@ public class Bitstream extends DSpaceObject
         return BitstreamStorageManager.retrieve(bContext, bRow
                 .getIntColumn("bitstream_id"));
     }
+    
+    public String getBase64() {
+    	try {
+			return new String(Base64.encodeBase64(IOUtils.toByteArray(this.retrieve())));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AuthorizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+	}
 
     /**
      * Get the bundles this bitstream appears in
