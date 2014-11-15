@@ -1058,10 +1058,7 @@ public class ItemTag extends TagSupport
             					out.print("<a class=\"btn btn-primary\" ");
             					out
                                     .print(bsLink
-                                            + LocaleSupport
-                                                    .getLocalizedMessage(
-                                                            pageContext,
-                                                            "org.dspace.app.webui.jsptag.ItemTag.view")
+                                            + "Visualizar"
                                             + "</a>");
             					
 								try {

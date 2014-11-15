@@ -236,7 +236,7 @@
         {
 %>
     <a class="btn btn-default" href="<%=locationLink %>?mode=full">
-        <fmt:message key="jsp.display-item.text2"/>
+        Exibir registro completo
     </a>
 <%
         }
