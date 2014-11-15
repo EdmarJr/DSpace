@@ -162,7 +162,7 @@
     <%-- Controls for a repeat search --%>
 	<div class="discovery-query panel-heading">
     <form action="/jspui/simple-search" method="get">
-         
+         <input type="hidden" name="pesquisa" value="simples"/>
          <select name="location" id="tlocation" hidden="true">
 <%
     if (scope == null)

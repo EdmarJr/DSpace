@@ -614,7 +614,12 @@ public class ItemTag extends TagSupport
 	                    }
                         else
                         {
-                            out.print(Utils.addEntities(values[j].value));
+                        	if(label.equals("Data do documento")) {
+                        		DCDate dd = new DCDate(values[j].value);
+                                out.print(UIUtil.displayDate(dd, false, false, (HttpServletRequest)pageContext.getRequest()));
+                        	} else {
+                        		out.print(Utils.addEntities(values[j].value));
+                        	}
                         }
                     }
                 }
@@ -813,10 +818,10 @@ public class ItemTag extends TagSupport
                 .getRequest();
 
         out.print("<div class=\"panel panel-info\">");
-        out.println("<div class=\"panel-heading\">"
-                + LocaleSupport.getLocalizedMessage(pageContext,
-                        "org.dspace.app.webui.jsptag.ItemTag.files")
-                + "</div>");
+//        out.println("<div class=\"panel-heading\">"
+//                + LocaleSupport.getLocalizedMessage(pageContext,
+//                        "org.dspace.app.webui.jsptag.ItemTag.files")
+//                + "</div>");
 
         try
         {
@@ -950,7 +955,7 @@ public class ItemTag extends TagSupport
                                 .getName(), Constants.DEFAULT_ENCODING));
             		out.print("\">"
                         + LocaleSupport.getLocalizedMessage(pageContext,
-                                "org.dspace.app.webui.jsptag.ItemTag.view")
+                                "Visualizar")
                         + "</a></td></tr>");
             	}	
             	else
@@ -1053,10 +1058,7 @@ public class ItemTag extends TagSupport
             					out.print("<a class=\"btn btn-primary\" ");
             					out
                                     .print(bsLink
-                                            + LocaleSupport
-                                                    .getLocalizedMessage(
-                                                            pageContext,
-                                                            "org.dspace.app.webui.jsptag.ItemTag.view")
+                                            + "Visualizar"
                                             + "</a>");
             					
 								try {
