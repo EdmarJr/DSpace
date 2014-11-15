@@ -16,7 +16,7 @@ public class EdmarUtils {
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
-	}
+	} 
 
 	public static Boolean seColecaoOuComunidadeAtos(String handle) {
 		Integer ultimoNumero = Integer.parseInt(obterUltimosNumeros(handle));
@@ -29,6 +29,14 @@ public class EdmarUtils {
 	public static Boolean seColecaoOuComunidadeRepositorio(String handle) {
 		Integer ultimoNumero = Integer.parseInt(obterUltimosNumeros(handle));
 		if(ultimoNumero.equals(3) || (ultimoNumero > 17) &&  (ultimoNumero < 23)) {
+ 			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+	
+	public static Boolean seComunidadeDoutrina(String handle) {
+		Integer ultimoNumero = Integer.parseInt(obterUltimosNumeros(handle));
+		if(ultimoNumero.equals(2)) {
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
