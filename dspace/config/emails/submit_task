@@ -6,19 +6,15 @@
 # {3}  Description of task
 # {4}  link to 'my DSpace' page 
 #
-Subject: DSpace: You have a new task
+Subject: Nova tarefa: {0} - {2}
 
-A new item has been submitted:
+Um novo item foi depositado: 
 
-Title:        {0}
-Collection:   {1}
-Submitted by: {2}
+Título:        {0}
+Coleção:       {1}
+Depositante:   {2}
 
-{3}
 
-To claim this task, please visit your "My DSpace"
-page:  {4}
+Para revisar este documento clique no link: {4}
 
-Many thanks!
-
-DSpace
+Equipe BDJur/STJ

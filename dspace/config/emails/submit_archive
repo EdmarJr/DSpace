@@ -4,18 +4,13 @@
 # {1}  Name of collection
 # {2}  handle 
 #
-Subject: DSpace: Submission Approved and Archived 
+Subject: Documento aprovado: {0}
 
-You submitted: {0}
+Você depositou: {0}
 
-To collection: {1}
+Na Coleção: {1}
 
-Your submission has been accepted and archived in DSpace,
-and it has been assigned the following identifier:
+O documento foi aceito e publicado na BDJur e recebeu o seguinte endereço:
 {2}
 
-Please use this identifier when citing your submission.
-
-Many thanks!
-
-DSpace
+Equipe BDJur/STJ
