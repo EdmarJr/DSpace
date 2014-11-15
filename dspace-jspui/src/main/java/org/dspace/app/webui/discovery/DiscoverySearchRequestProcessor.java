@@ -244,9 +244,13 @@ public class DiscoverySearchRequestProcessor implements SearchRequestProcessor, 
         {
             throw new SearchProcessorException(e.getMessage(), e);
         }
-
+        
+        
         DiscoveryConfiguration discoveryConfiguration = SearchUtils
                 .getDiscoveryConfiguration(scope,(String) request.getParameter("pesquisa"));
+        if(scope != null) {
+        	scope.setTipoPesquisa((String) request.getParameter("pesquisa"));
+        }
         
         adicionarParametroSortOptionsNaRequest(request, discoveryConfiguration);
         

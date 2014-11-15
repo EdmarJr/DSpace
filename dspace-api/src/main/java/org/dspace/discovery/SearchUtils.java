@@ -54,8 +54,10 @@ public class SearchUtils {
         if(dso == null){
             result = configurationService.getMap().get("site");
         }else{
-        	if(concatenar != null) {
+        	if(concatenar != null && !concatenar.equals("") ) {
         		result = configurationService.getMap().get(dso.getHandle() + concatenar);
+        	} else if(dso.getTipoPesquisa() != null && !dso.getTipoPesquisa().equals("")) {
+        		result = configurationService.getMap().get(dso.getHandle() + dso.getTipoPesquisa());
         	} else {
         		result = configurationService.getMap().get(dso.getHandle());
         	}

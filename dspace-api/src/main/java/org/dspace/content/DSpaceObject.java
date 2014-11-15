@@ -23,8 +23,20 @@ public abstract class DSpaceObject
     // accumulate information to add to "detail" element of content Event,
     // e.g. to document metadata fields touched, etc.
     private StringBuffer eventDetails = null;
+    
+    private String tipoPesquisa;
+    
+    
 
-    /**
+    public String getTipoPesquisa() {
+		return tipoPesquisa;
+	}
+
+	public void setTipoPesquisa(String tipoPesquisa) {
+		this.tipoPesquisa = tipoPesquisa;
+	}
+
+	/**
      * Reset the cache of event details.
      */
     protected void clearDetails()
