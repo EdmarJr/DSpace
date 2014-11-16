@@ -54,9 +54,9 @@ public class SearchUtils {
         if(dso == null){
             result = configurationService.getMap().get("site");
         }else{
-        	if(concatenar != null && !concatenar.equals("") ) {
+        	if(concatenar != null && !concatenar.equals("") && !concatenar.equals("simples")) {
         		result = configurationService.getMap().get(dso.getHandle() + concatenar);
-        	} else if(dso.getTipoPesquisa() != null && !dso.getTipoPesquisa().equals("")) {
+        	} else if(dso.getTipoPesquisa() != null && !dso.getTipoPesquisa().equals("") && !dso.getTipoPesquisa().equals("simples")) {
         		result = configurationService.getMap().get(dso.getHandle() + dso.getTipoPesquisa());
         	} else {
         		result = configurationService.getMap().get(dso.getHandle());
